@@ -4,6 +4,7 @@ const app = express(); //creates the "app" that routes
 const bodyParser = require('body-parser');
 const axios = require('axios')
 
+const parseRegex = require("regex-parser")
 
 const rp = require('request-promise');
 const cheerio = require('cheerio')
@@ -12,33 +13,6 @@ const cheerio = require('cheerio')
 const PORT = process.env.port || 3000
 
 let list = []
-
-
-
-// let text = "Visit W3Schools!";
-// let n = text.search("W3Schools");
-
-// let text = "VisitW3Schools";
-// let n = text.split(/w3schools/i);
-// console.log(n)
-
-
-// let text = "Visit Microsoft!";
-// let result = text.replace(/microsoft/i, "W3Schools");
-
-// console.log(result)
-
-const names = 'Harry Trump Fred Barney Helen Rigby  Bill Abel Chris Hand'
-
-console.log(names)
-
-const re = /\s*(?: )\s*/
-const nameList = names.split(re)
-
-console.log(nameList)
-
-
-
 
 
 
@@ -115,12 +89,18 @@ function cleaner(lifts, letter){ //just for removing duplicate words
 
 
 app.get('/blu', async(req,res)=>{
-  rp('https://www.skibluemt.com/')
-  .then(function(htmlString){
-    const $ = cheerio.load(htmlString) // loads cheerio in this url so we can use it like jquery
-      let lifts = $("#trailliftsflex").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'')
-      // res.send({"Blue Moutain": lifts })
-  })
+      rp('https://www.skibluemt.com/')
+      .then(function(htmlString){
+        const $ = cheerio.load(htmlString) // loads cheerio in this url so we can use it like jquery
+          let lifts = $("#trailliftsflex").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'').replace(/TrailsOpen/i, "Trails").replace(/LiftsOpen/i, "Lifts")
+          let i,j, temporary, chunk = 2 , data = [];
+           lifts = lifts.match(/[A-Z]+|[^a-z]+/gi);
+
+           for (i = 0,j = lifts.length; i < j; i += chunk) {
+               data.push(lifts.slice(i, i + chunk))
+             }
+            res.send({"Blue Mountain": data })
+      })
 })
 
 
@@ -128,8 +108,19 @@ app.get('/windham', async(req,res)=>{
   rp('https://www.windhammountain.com/snow-report/')
   .then(function(htmlString){
     const $ = cheerio.load(htmlString) // loads cheerio in this url so we can use it like jquery
-      let lifts = $(".row.px-5.mt-5").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'')
-      res.send({"Windham": lifts })
+    let i,j, temporary, chunk = 2 , data = [];
+
+      let lifts = $(".row.px-5.mt-5").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'').replace(/TRAILS/i, "Trails").replace(/LIFTS/i, "Lifts").replace(/PARKS/i, "Terrain")
+      let trails = lifts.match(/[A-Z]+|[^a-z]+/gi);
+
+      const groomed = trails.indexOf('GROOMED'); if (groomed > -1) { trails.splice(groomed, 2); }
+      //removes groomed from array
+      const acres = trails.indexOf('ACRES'); if (acres > -1) { trails.splice(acres, 2); }
+      //removes acres from array
+      for (i = 0,j = trails.length; i < j; i += chunk) { data.push(trails.slice(i, i + chunk)) } //splits the array into subarrays
+
+      res.send({"Windham Mountain" : data})
+
   })
 })
 
@@ -137,29 +128,22 @@ app.get('/windham', async(req,res)=>{
 
 
 app.get('/whiteface', async(req,res)=>{
-    rp('https://whiteface.com/mountain/conditions')
-    .then(function(htmlString){
-      const $ = cheerio.load(htmlString) // loads cheerio in this url so we can use it like jquery
-        let liftOriginal = $(".lifts").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'')
-        let trailsOriginal = $(".trails").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'')
+  rp('https://whiteface.com/mountain/conditions')
+  .then(function(htmlString){
+    const $ = cheerio.load(htmlString) // loads cheerio in this url so we can use it like jquery
+      let lifts = $(".lifts").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'')
+      let trails = $(".trails").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'')
 
-        let trailCleaned = cleaner(trailsOriginal, 'T').replace('of' , '/')
-        let liftCleaned = cleaner(liftOriginal, 'L').replace('of' , '/')
+       trails = cleaner(trails, 'T').replace('of' , '/')
+       lifts = cleaner(lifts, 'L').replace('of' , '/')
 
-        let trails = '' , lifts = ''
+       trails = trails.match(/[A-Z]+|[^a-z]+/gi);
+       lifts = lifts.match(/[A-Z]+|[^a-z]+/gi);
 
-        for(let i = 0 ; i < trailCleaned.length ; i++){
-            if(trailCleaned[i] === 's'){ trails = trails + trailCleaned[i] + " " }
-            else{ trails = trails + trailCleaned[i] }
-        }
-
-        for(let i = 0 ; i < liftCleaned.length ; i++){
-            if(liftCleaned[i] === 's'){ lifts = lifts + liftCleaned[i] + " " }
-            else{ lifts = lifts + liftCleaned[i] }
-        }
-        res.send({"Whiteface":  [lifts , trails] })
-    })
+      res.send({"Whiteface":  [lifts , trails] })
+  })
 })
+
 
 
 
@@ -173,12 +157,9 @@ app.get('/mnt_creek', async(req,res)=>{
   rp('https://www.mountaincreek.com/mountainreport')
       .then(function (htmlString) {
           const $ = cheerio.load(htmlString)
-          let trails = $(".open_trail_lift").children().text().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'')
-
-          let str = finalStr(trails)
-          let s = '' // removes unncessary text
-          str.split(' ').forEach((item, i) => { if(item !== 'ed'){ s = s + item + " " } })
-          res.send({"Mountain Creek": s})
+          let trails = $(".open_trail_lift").children().text().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'').replace(/OpenedTrails/i, "Trails").replace(/OpenedLifts/i, "Lifts")
+          trails = trails.match(/[A-Z]+|[^a-z]+/gi);
+          res.send({" Creek" : trails })
       })
 })
 
@@ -186,80 +167,56 @@ app.get('/mnt_creek', async(req,res)=>{
 
 
 app.get('/mnt_snow', (req,res)=>{
-    rp('https://www.mountsnow.com/the-mountain/mountain-conditions/lift-and-terrain-status.aspx')
-    .then(function(htmlString){
-      const $ = cheerio.load(htmlString) // loads cheerio in this url so we can use it like jquery
-        let lifts = $(".terrain_summary__tab_main__text").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'')
-        let str = cleanString(lifts)
 
-        let ret = ""
-          for (let i =0 ; i < str.length; i++){
-            if(str[i+1] !== undefined){
-                  if( str[i+1] === str[i+1].toUpperCase() && (!parseInt(str[i+1])) && str[i+1] !=='/'){
-                    if( str[i+1] == '0'){ ret = ret + str[i] }
-                        else{ ret = ret + str[i] + " " }
+  rp('https://www.mountsnow.com/the-mountain/mountain-conditions/lift-and-terrain-status.aspx')
+  .then(function(htmlString){
+    const $ = cheerio.load(htmlString) // loads cheerio in this url so we can use it like jquery
+    let i,j, temporary, chunk = 2 , data = [];
 
-                   }
-                   else if(str[i] === 'n'){
-                    ret = ret + str[i] +" "
-                   }
-                  else{
-                    ret = ret + str[i]
-                  }
-            }
-            else{
-              ret = ret + str[i]
-            }
-          }
+      let lifts = $(".terrain_summary__tab_main__text").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'').replace(/%/g, '').replace(/TrailsOpen/i, "Trails").replace(/LiftsOpen/i, "Lifts").replace(/TerrainOpen/i, "Terrain")
+       lifts = lifts.match(/[A-Z]+|[^a-z]+/gi);
 
-          let i,j, temporary, chunk = 3 , data = [];
-          for (i = 0,j = ret.split(' ').length; i < j; i += chunk) {
-            data.push(ret.split(' ').slice(i, i + chunk))
-          }
-
-
+        for (i = 0,j = lifts.length; i < j; i += chunk) {
+          data.push(lifts.slice(i, i + chunk))
+        }
         res.send({"Mount Snow":  data })
-    })
+  })
 })
 
 app.get('/hunter_mnt', (req,res)=>{
   rp('https://www.huntermtn.com/the-mountain/mountain-conditions/lift-and-terrain-status.aspx')
   .then(function(htmlString){
     const $ = cheerio.load(htmlString) // loads cheerio in this url so we can use it like jquery
-      let lifts = $(".terrain_summary__tab_main__text").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'')
+    let i,j, temporary, chunk = 2 , data = [];
 
-      let fin = finalStr(cleanString(lifts)) //nested function that cleans up strings
-      let i,j, temporary, chunk = 3 , data = [];
-      for (i = 0,j = fin.split(' ').length; i < j; i += chunk) {
-        data.push(fin.split(' ').slice(i, i + chunk)) //sets array into chunks of 3
+      let lifts = $(".terrain_summary__tab_main__text").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'').replace(/%/g, '').replace(/TrailsOpen/i, "Trails").replace(/LiftsOpen/i, "Lifts").replace(/TerrainOpen/i, "Terrain")
+       lifts = lifts.match(/[A-Z]+|[^a-z]+/gi);
+
+      for (i = 0,j = lifts.length; i < j; i += chunk) {
+        data.push(lifts.slice(i, i + chunk)) //sets array into chunks of 3
       }
       res.send({ "Hunter Mountain" : data })
   })
+
 })
 
 
 app.get('/stowe', async(req,res)=>{
+
   rp('https://www.stowe.com/the-mountain/mountain-conditions/terrain-and-lift-status.aspx')
   .then(function(htmlString){
-    const $ = cheerio.load(htmlString) // loads cheerio in this url so we can use it like jquery
-      let lifts = $(".terrain_summary__tab_main__text").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'').split('')
+      const $ = cheerio.load(htmlString) // loads cheerio in this url so we can use it like jquery
+      let i,j, temporary, chunk = 2 , data = [];
 
-      let fin = finalStr(cleanString(lifts)) //nested function that cleans up strings
-      let i,j, temporary, chunk = 3 , data = [];
-      for (i = 0,j = fin.split(' ').length; i < j; i += chunk) {
-        data.push(fin.split(' ').slice(i, i + chunk))
+      let lifts = $(".terrain_summary__tab_main__text").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'').replace(/%/g, '').replace(/TrailsOpen/i, "Trails").replace(/LiftsOpen/i, "Lifts").replace(/TerrainOpen/i, "Terrain")
+       lifts = lifts.match(/[A-Z]+|[^a-z]+/gi);
+
+      for (i = 0,j = lifts.length; i < j; i += chunk) {
+        data.push(lifts.slice(i, i + chunk))
       }
-      res.send({ "Stowe" : data })
+        res.send({ "Stowe" : data })
   })
 })
-
-
-
-
-
-
-
-
 
 
 app.listen(PORT, ()=> console.log( `server running ${PORT}`))
