@@ -17,6 +17,50 @@ let list = []
 
 
 
+
+  rp('https://www.windhammountain.com/snow-report/')
+  .then(function(htmlString){
+    const $ = cheerio.load(htmlString) // loads cheerio in this url so we can use it like jquery
+      let lifts = $(".row.px-5.mt-5").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'')
+      // console.log(lifts.toLowerCase().split(''))
+      let str = lifts.toLowerCase().split('')
+      console.log(str)
+      let a =''
+
+
+      for (let i =0 ; i < str.length ; i++){
+          if(str[i+1] !== undefined){
+            if(str[i] === str[i].toUpperCase() && str[i+1] !== str[i+1].toUpperCase() ){
+              a = a + str[i] + ','
+            }
+            else{
+              a = a + str[i]
+            }
+          }
+
+        else{
+          a = a + str[i]
+        }
+    }
+        console.log(a.split(','))
+
+        //go through each one, capitialise letter and spread out
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function finalStr(str){
   let ret = ""
     for (let i =0 ; i < str.length; i++){
