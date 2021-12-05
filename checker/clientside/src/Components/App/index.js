@@ -2,10 +2,14 @@
 
 import Header from '../Header'
 
+import Main from '../Main'
+
+import './style.css'
 function App() {
   return (
-    <div className="App">
+    <div className="cont">
       <Header/>
+      <Main/>
     </div>
   );
 }
