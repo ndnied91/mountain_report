@@ -15,44 +15,27 @@ let list = []
 
 
 
+// let text = "Visit W3Schools!";
+// let n = text.search("W3Schools");
+
+// let text = "VisitW3Schools";
+// let n = text.split(/w3schools/i);
+// console.log(n)
 
 
+// let text = "Visit Microsoft!";
+// let result = text.replace(/microsoft/i, "W3Schools");
 
-  rp('https://www.windhammountain.com/snow-report/')
-  .then(function(htmlString){
-    const $ = cheerio.load(htmlString) // loads cheerio in this url so we can use it like jquery
-      let lifts = $(".row.px-5.mt-5").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'')
-      // console.log(lifts.toLowerCase().split(''))
-      let str = lifts.toLowerCase().split('')
-      console.log(str)
-      let a =''
+// console.log(result)
 
+const names = 'Harry Trump Fred Barney Helen Rigby  Bill Abel Chris Hand'
 
-      for (let i =0 ; i < str.length ; i++){
-          if(str[i+1] !== undefined){
-            if(str[i] === str[i].toUpperCase() && str[i+1] !== str[i+1].toUpperCase() ){
-              a = a + str[i] + ','
-            }
-            else{
-              a = a + str[i]
-            }
-          }
+console.log(names)
 
-        else{
-          a = a + str[i]
-        }
-    }
-        console.log(a.split(','))
+const re = /\s*(?: )\s*/
+const nameList = names.split(re)
 
-        //go through each one, capitialise letter and spread out
-})
-
-
-
-
-
-
-
+console.log(nameList)
 
 
 
