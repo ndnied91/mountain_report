@@ -13,9 +13,24 @@ class Main extends React.Component{
   }
   render(){
 
+const renderMnts = () => {
+  return this.props.mountains.map((item)=>{
+    return(
+      <div>
+
+        <h1>{item.name}</h1>
+        <div> Trails: {item.trails} </div>
+        <div> Lifts: {item.lifts} </div>
+
+       </div>
+    )
+  })
+}
+
+
     return(
        <div className="container">
-        <Report item="hi"/>
+        {renderMnts()}
        </div>
      )
   }
@@ -23,8 +38,12 @@ class Main extends React.Component{
 
 
 const mapStateToProps=(state)=>{
-  console.log(state)
-  return {}
+
+  return { mountains: state.mountains}
 }
 
 export default connect(mapStateToProps , {fetchAllMountains})(Main)
+
+
+
+// <Report item="hi"/>
