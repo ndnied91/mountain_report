@@ -1,6 +1,16 @@
 
-module.exports = {
-    mongoURI: 'mongodb+srv://dn34:Hello1234@cluster0.ch6vn.mongodb.net/Cluster0?retryWrites=true&w=majority'
-    // secretKey: 'secretsauce1022',
-    // blogID: '60203af896cca33740f1bb11'
+
+
+
+if(process.env.NODE_ENV ===  'production'){
+  //return the production set of keys
+  console.log('production')
+  module.exports = require('./prod')
+
+}else{
+  //we are in the developement - return correct keys
+  //this will be local
+  console.log('local')
+  module.exports = require('./dev')
+  //show no longer be visibe
 }

@@ -34,6 +34,9 @@ const PORT = process.env.port || 3000
 // arr.push(await mnts.updateHunter())
 // arr.push(await mnts.updateStowe())
 
+
+
+
 app.get('/api/mountains', async (req,res)  =>{
   console.log('call being made...')
 
