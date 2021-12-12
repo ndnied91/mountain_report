@@ -34,10 +34,14 @@ const PORT = process.env.port || 3000
 // arr.push(await mnts.updateHunter())
 // arr.push(await mnts.updateStowe())
 
-app.get('/', async (req,res)  =>{
+app.get('/api/mountains', async (req,res)  =>{
+  console.log('call being made...')
 
-    //find a way to exclude or include depending on user option 
-    res.send( await Resort.find() )
+  console.log('')
+  let mnts =  await Resort.find()
+  console.log(mnts)
+    //find a way to exclude or include depending on user option
+    res.send(mnts)
 
 
 
