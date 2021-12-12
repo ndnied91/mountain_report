@@ -16,10 +16,12 @@ const PORT = process.env.port || 3000
 
 app.get('/', async (req,res)  =>{
   let arr = []
-  //pass an arary of mountains user wants to biew
-    const response = await getBlue()
-    arr.push(response)
-    arr.push([1,2,3,4])
+  // pass an arary of mountains user wants to biew
+
+    arr.push(await getMntCreek())
+    arr.push(await getBlue())
+
+
     res.send(arr)
 
 })
@@ -27,7 +29,7 @@ app.get('/', async (req,res)  =>{
 
 
 const getBlue = async()=>{
-  return await rp('https://www.skibluemt.com/')
+  return rp('https://www.skibluemt.com/')
     .then(function(htmlString){
       const $ = cheerio.load(htmlString) // loads cheerio in this url so we can use it like jquery
         let lifts = $("#trailliftsflex").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'').replace(/TrailsOpen/i, "Trails").replace(/LiftsOpen/i, "Lifts")
@@ -40,24 +42,44 @@ const getBlue = async()=>{
 }
 
 
+const getMntCreek = () =>{
+  return rp('https://www.mountaincreek.com/mountainreport')
+      .then(function (htmlString) {
+          const $ = cheerio.load(htmlString)
+          let trails = $(".open_trail_lift").children().text().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'').replace(/OpenedTrails/i, "Trails").replace(/OpenedLifts/i, "Lifts")
+          trails = trails.match(/[A-Z]+|[^a-z]+/gi);
 
-
-
-
-app.get('/blu', async(req,res)=>{
-      rp('https://www.skibluemt.com/')
-      .then(function(htmlString){
-        const $ = cheerio.load(htmlString) // loads cheerio in this url so we can use it like jquery
-          let lifts = $("#trailliftsflex").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'').replace(/TrailsOpen/i, "Trails").replace(/LiftsOpen/i, "Lifts")
-          let i,j, temporary, chunk = 2 , data = [];
-           lifts = lifts.match(/[A-Z]+|[^a-z]+/gi);
-
-           for (i = 0,j = lifts.length; i < j; i += chunk) {
-               data.push(lifts.slice(i, i + chunk))
-             }
-            res.send({"Blue Mountain": data })
+          return ({"Mountain Creek" : trails })
       })
-})
+}
+
+
+
+// app.get('/blu', async(req,res)=>{
+//       rp('https://www.skibluemt.com/')
+//       .then(function(htmlString){
+//         const $ = cheerio.load(htmlString) // loads cheerio in this url so we can use it like jquery
+//           let lifts = $("#trailliftsflex").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'').replace(/TrailsOpen/i, "Trails").replace(/LiftsOpen/i, "Lifts")
+//           let i,j, temporary, chunk = 2 , data = [];
+//            lifts = lifts.match(/[A-Z]+|[^a-z]+/gi);
+//
+//            for (i = 0,j = lifts.length; i < j; i += chunk) {
+//                data.push(lifts.slice(i, i + chunk))
+//              }
+//             res.send({"Blue Mountain": data })
+//       })
+// })
+
+
+// app.get('/mnt_creek', async(req,res)=>{
+//   rp('https://www.mountaincreek.com/mountainreport')
+//       .then(function (htmlString) {
+//           const $ = cheerio.load(htmlString)
+//           let trails = $(".open_trail_lift").children().text().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'').replace(/OpenedTrails/i, "Trails").replace(/OpenedLifts/i, "Lifts")
+//           trails = trails.match(/[A-Z]+|[^a-z]+/gi);
+//           res.send({"Mountain Creek" : trails })
+//       })
+// })
 
 
 
@@ -106,22 +128,7 @@ app.get('/whiteface', async(req,res)=>{
 
 
 
-
-app.get('/mnt_creek', async(req,res)=>{
-  rp('https://www.mountaincreek.com/mountainreport')
-      .then(function (htmlString) {
-          const $ = cheerio.load(htmlString)
-          let trails = $(".open_trail_lift").children().text().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'').replace(/OpenedTrails/i, "Trails").replace(/OpenedLifts/i, "Lifts")
-          trails = trails.match(/[A-Z]+|[^a-z]+/gi);
-          res.send({" Creek" : trails })
-      })
-})
-
-
-
-
 app.get('/mnt_snow', (req,res)=>{
-
   rp('https://www.mountsnow.com/the-mountain/mountain-conditions/lift-and-terrain-status.aspx')
   .then(function(htmlString){
     const $ = cheerio.load(htmlString) // loads cheerio in this url so we can use it like jquery

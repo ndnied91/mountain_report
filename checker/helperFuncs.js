@@ -53,7 +53,7 @@ function cleaner(lifts, letter){ //just for removing duplicate words
   return str
 }
 
-module.exports = { cube, cleanString, cleaner, finalStr };
+module.exports = { cleanString, cleaner, finalStr };
 
 
 //       const getBlue = async()=>{
