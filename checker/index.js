@@ -5,9 +5,17 @@ const axios = require('axios')
 const parseRegex = require("regex-parser")
 const rp = require('request-promise');
 const cheerio = require('cheerio')
+const mongoose = require('mongoose')
+
+
+const keys = require('./config/keys')
+mongoose.connect(keys.mongoURI)
 
 
 var mods = require("./helperFuncs.js");
+
+
+const Report = require('./Models/Resort.js')
 
 
 
@@ -29,6 +37,25 @@ app.get('/', async (req,res)  =>{
     res.send(arr)
 
 })
+
+
+        const test = new Report({
+          trails: 2,
+          lifts: 4 ,
+          terrain: 3 , //just to get the correct data format,
+          timestamp: null
+          // timestamp : moment.tz(Date.now(), "America/New_York").format(),
+        })
+
+        try{
+           test.save()
+
+
+      } catch(err){
+          console.log(err)
+      }
+
+
 
 
 
