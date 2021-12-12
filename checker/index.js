@@ -1,18 +1,22 @@
 const express = require("express"); // express is for routing
 const app = express(); //creates the "app" that routes
-
 const bodyParser = require('body-parser');
 const axios = require('axios')
-
 const parseRegex = require("regex-parser")
-
 const rp = require('request-promise');
 const cheerio = require('cheerio')
+
+
+let mnt = require('./mountains.js');
+
+
 
 
 const PORT = process.env.port || 3000
 
 let list = []
+
+
 
 
 
@@ -69,8 +73,20 @@ function cleanString(lifts){
 
 
 app.get('/', (req,res)=>{
-  res.send(list)
+  let arr = []
+
+    getBlue()
+    .then((list) => { arr.push(list) })
+    .then((response)=>{ arr.push([1,2,3,4])
+
+    res.send(arr)
+    })
+
 })
+
+
+
+
 
 
 
@@ -84,6 +100,61 @@ function cleaner(lifts, letter){ //just for removing duplicate words
   });
   return str
 }
+
+
+
+
+
+//       const getBlue = async()=>{
+//         return await rp('https://www.skibluemt.com/')
+//           .then(function(htmlString){
+//             const $ = cheerio.load(htmlString) // loads cheerio in this url so we can use it like jquery
+//               let lifts = $("#trailliftsflex").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'').replace(/TrailsOpen/i, "Trails").replace(/LiftsOpen/i, "Lifts")
+//               let i,j, temporary, chunk = 2 , data = [];
+//                lifts = lifts.match(/[A-Z]+|[^a-z]+/gi);
+//
+//                for (i = 0,j = lifts.length; i < j; i += chunk) { data.push(lifts.slice(i, i + chunk)) }
+//                  return ({"Blue Mountain": data })
+//           })
+//       }
+
+// var foo = async function() {
+//   console.log(await hi());
+// };
+//
+// foo()
+
+
+// var results = async function() {
+//   return await getBlue()
+// };
+//
+// results()
+// console.log(results())
+//
+
+
+const getBlue = async()=>{
+  return await rp('https://www.skibluemt.com/')
+    .then(function(htmlString){
+      const $ = cheerio.load(htmlString) // loads cheerio in this url so we can use it like jquery
+        let lifts = $("#trailliftsflex").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'').replace(/TrailsOpen/i, "Trails").replace(/LiftsOpen/i, "Lifts")
+        let i,j, temporary, chunk = 2 , data = [];
+         lifts = lifts.match(/[A-Z]+|[^a-z]+/gi);
+
+         for (i = 0,j = lifts.length; i < j; i += chunk) { data.push(lifts.slice(i, i + chunk)) }
+           return ({"Blue Mountain": data })
+    })
+}
+
+
+getBlue().then((result) => { console.log(result) })
+
+
+
+
+
+
 
 
 
@@ -102,6 +173,7 @@ app.get('/blu', async(req,res)=>{
             res.send({"Blue Mountain": data })
       })
 })
+
 
 
 app.get('/windham', async(req,res)=>{
