@@ -1,9 +1,13 @@
 
-import React, { useEffect , useState } from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import {connect} from 'react-redux'
 import { CSSTransition } from "react-transition-group";
+import {moutainSelections, fetchSelectedMountains} from '../../../actions'
+
 import "./Modal.css";
+
+
 
 const Modal = props => {
 
@@ -26,20 +30,13 @@ const Modal = props => {
   []);
 
   const collectProps=(props)=>{
-    console.log('clicked')
-
+    console.log(props.selection)
+    //make a call to external
+    props.fetchSelectedMountains(props.selection)
   }
 
   const handleChange=(e)=> {
-    let isChecked = e.target.checked;
-    if(isChecked === true){
-        console.log(e.target.value)
-
-        let val = e.target.value
-        //save on state here
-    }
-
-
+        props.moutainSelections(e.target.value)
   }
 
   return ReactDOM.createPortal(
@@ -56,15 +53,11 @@ const Modal = props => {
 
           <div className="dpdn">
               <input type="checkbox" value="Whiteface" onChange={e => handleChange(e)}/> Whiteface <br />
-              <input type="checkbox" value="mnt_snow"  onChange={e => handleChange(e)}/> Mnt Snow <br />
-              <input type="checkbox" value="blu_mnt"  onChange={e => handleChange(e)}/> Blue Mountain <br />
-              <input type="checkbox" value="stowe"  onChange={e => handleChange(e)}/> Stowe <br />
-              <input type="checkbox" value="hunter"  onChange={e => handleChange(e)}/> Hunter Mountain <br />
-              <input type="checkbox" value="hunter" onChange={e => handleChange(e)}/> Hunter Mountain <br />
-
-
+              <input type="checkbox" value="Mnt Snow" onChange={e => handleChange(e)}/> Mnt Snow <br />
+              <input type="checkbox" value="Blu Mnt" onChange={e => handleChange(e)}/> Blue Mountain <br />
+              <input type="checkbox" value="Stowe" onChange={e => handleChange(e)}/> Stowe <br />
           </div>
-          //need to pull out the values of these selections
+
 
 
 
@@ -80,4 +73,8 @@ const Modal = props => {
   );
 };
 
-export default connect()(Modal);
+const mapStateToProps=(state)=>{
+  return {selection: state.selection.selection }
+}
+
+export default connect( mapStateToProps, {moutainSelections , fetchSelectedMountains})(Modal);

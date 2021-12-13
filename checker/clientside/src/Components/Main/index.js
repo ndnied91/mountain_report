@@ -1,7 +1,5 @@
 import React from 'react'
 
-import Report from '../Report'
-
 import {connect} from 'react-redux'
 import {fetchAllMountains} from '../../actions'
 import './style.css'
@@ -13,10 +11,13 @@ class Main extends React.Component{
   }
   render(){
 
+
+
+
 const renderMnts = () => {
-  return this.props.mountains.map(( {name, trails, lifts, terrain , link} )=>{
+  return this.props.mountains.map(( {name, trails, lifts, terrain , link} , index )=>{
     return(
-      <div className="indmnt">
+      <div key={index} className="indmnt">
         <h1>{name}</h1>
         <div> Trails: {trails} </div>
         <div> Lifts: {lifts} </div>

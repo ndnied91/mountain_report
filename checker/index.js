@@ -11,6 +11,8 @@ const moment = require('moment-timezone');
 const keys = require('./config/keys')
 mongoose.connect(keys.mongoURI)
 
+app.use(bodyParser.json());
+
 
 var mods = require("./helperFuncs.js");
 
@@ -39,20 +41,15 @@ const PORT = process.env.port || 3000
 
 app.get('/api/mountains', async (req,res)  =>{
   console.log('call being made...')
-
-  console.log('')
   let mnts =  await Resort.find()
-  console.log(mnts)
-    //find a way to exclude or include depending on user option
     res.send(mnts)
-
-
-
-
-
 })
 
 
+app.post('/api/mountains' , async (req,res)=>{
+  console.log(req.body)
+  //gets desired mouintains
+})
 
 
 
