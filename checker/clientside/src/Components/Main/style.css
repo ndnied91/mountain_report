@@ -3,11 +3,15 @@
 .container{
   display: flex;
   justify-content: center;
-
   border: 1px solid black;
-
   height: 90vh;
   width: 95%;
+}
 
-
+.indmnt{
+  border: 1px solid black;
+  padding: 40px;
+  margin: 50px;
+  width: 300px;
+  height: 50%;
 }

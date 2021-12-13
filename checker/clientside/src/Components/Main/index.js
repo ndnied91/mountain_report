@@ -14,13 +14,16 @@ class Main extends React.Component{
   render(){
 
 const renderMnts = () => {
-  return this.props.mountains.map((item)=>{
+  return this.props.mountains.map(( {name, trails, lifts, terrain , link} )=>{
     return(
-      <div>
+      <div className="indmnt">
+        <h1>{name}</h1>
+        <div> Trails: {trails} </div>
+        <div> Lifts: {lifts} </div>
 
-        <h1>{item.name}</h1>
-        <div> Trails: {item.trails} </div>
-        <div> Lifts: {item.lifts} </div>
+        {terrain > 1 ? <div> Terrain: {terrain} </div> : null}
+
+        <a href={link}>Weather</a>
 
        </div>
     )
@@ -29,7 +32,7 @@ const renderMnts = () => {
 
 
     return(
-       <div className="container">
+       <div className="">
         {renderMnts()}
        </div>
      )

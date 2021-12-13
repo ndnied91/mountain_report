@@ -1,16 +1,22 @@
 
 
-import React from 'react'
-
+import React, { useState } from "react";
+import Modal from "./Modal";
 import './style.css'
-class Header extends React.Component{
-  render(){
-    return <div className="mainheader">
-      <h4>Moutain Checker </h4>
-      
+
+export default function App() {
+  const [show, setShow] = useState(false);
+
+  return (
+    <div className="App">
+
+        <h4>Moutains</h4>
+
+      <button onClick={() => setShow(true)}>Select Mountains</button>
+      <Modal title="Mountain Selector" onClose={() => setShow(false)} show={show}
+
+      />
+
     </div>
-  }
+  );
 }
-
-
-export default Header
