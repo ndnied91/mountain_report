@@ -12,9 +12,32 @@ const moment = require('moment-timezone');
 const keys = require('./config/keys')
 mongoose.connect(keys.mongoURI)
 
-var mods = require("./helperFuncs.js");
+const mods = require("./helperFuncs.js");
+const weather = require('weather-js');
+
 
 const Report = require('./Models/Resort.js')
+
+
+
+
+let zip = '07067'
+  weather.find({search: zip, degreeType: 'F'}, function(err, result) {
+    if(err) console.log(err);
+    console.log( JSON.stringify(result, null, 2))
+  });
+
+
+
+
+
+
+
+
+
+
+
+
 
 //JUST FOR SCRAPING AND DATA GATHERING
 const updateBlueMnt = async()=>{
@@ -108,7 +131,7 @@ const updateWindham = () =>{
         const filter = { name: 'Windham Mountain' };
         const update = {
           trails: `${trails[1]}/54`,
-          lifts: `${trails[3]}/11` , 
+          lifts: `${trails[3]}/11` ,
           terrain: trails[5],
           link : 'https://www.windhammountain.com/snow-report/',
           weather: 'https://www.windhammountain.com/snow-report/',

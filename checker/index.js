@@ -8,24 +8,23 @@ const cheerio = require('cheerio')
 const mongoose = require('mongoose')
 const moment = require('moment-timezone');
 
+let request = require('request');
+
 const keys = require('./config/keys')
 mongoose.connect(keys.mongoURI)
 
 app.use(bodyParser.json());
 
-var mods = require("./helperFuncs.js");
+const mods = require("./helperFuncs.js");
+
 
 
 const Resort = require('./Models/Resort.js')
-
-
 
 const PORT = process.env.port || 3000
 
 
 require('./scheduler.js')
-
-
 
 
 
@@ -197,3 +196,59 @@ app.post('/api/mountains' , async (req,res)=>{
 
 
 app.listen(PORT, ()=> console.log( `server running ${PORT}`))
+
+
+
+
+
+
+
+
+//WORKING
+// let apiKey = 'b45d84a44810d326858ee63a6fe20047'
+// let city = 'colonia,us';
+// let url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}&cnt=2`
+//
+// request(url, function (err, response, body) {
+//   if(err){
+//     console.log('error:', error);
+//   } else {
+//     let weather = JSON.parse(body)
+//     console.log(weather.list)
+//   }
+// });
+//
+
+
+
+
+
+// let weather = require('openweather-apis');
+// weather.setLang('en');
+//
+// weather.setZipCode('07067');
+// weather.setUnits('imperial');
+// weather.setAPPID('b45d84a44810d326858ee63a6fe20047');
+
+  // weather.getTemperature(function(err, temp){
+  // 		console.log(temp);
+  // 	});
+
+  // weather.getWeatherForecastForDays(3, function(err, obj){
+	// 	console.log(obj);
+	// });
+  //
+  // weather.getAllWeather(function(err, JSONObj){
+	// 	console.log(JSONObj);
+	// });
+
+
+  // weather.getTemperature(function(err, temp){
+	// 		if(err) console.log(err);
+  //
+	// 		// normal execution with no error
+	// 		});
+
+  // weather.getWeatherForecastForDays(1, function(err, obj){
+	// 	console.log(obj);
+	// });
