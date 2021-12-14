@@ -45,18 +45,6 @@ app.post('/api/mountains' , async (req,res)=>{
 
 
 
-//
-// let zip = '07067'
-//   weather.find({search: zip, degreeType: 'F'}, function(err, result) {
-//     if(err) console.log(err);
-//
-//     let forecast = result[0].forecast
-//     let current =result[0].current
-//
-//   });
-//
-//
-
 
 
 
@@ -196,57 +184,14 @@ update()
 app.listen(PORT, ()=> console.log( `server running ${PORT}`))
 
 
-
-
-
-
-
-
-//WORKING
-// let apiKey = 'b45d84a44810d326858ee63a6fe20047'
-// let city = 'colonia,us';
-// let url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}&cnt=2`
-//
-// request(url, function (err, response, body) {
-//   if(err){
-//     console.log('error:', error);
-//   } else {
-//     let weather = JSON.parse(body)
-//     console.log(weather.list)
-//   }
-// });
-//
-
-
-
-
-
-// let weather = require('openweather-apis');
-// weather.setLang('en');
-//
-// weather.setZipCode('07067');
-// weather.setUnits('imperial');
-// weather.setAPPID('b45d84a44810d326858ee63a6fe20047');
-
-  // weather.getTemperature(function(err, temp){
-  // 		console.log(temp);
-  // 	});
-
-  // weather.getWeatherForecastForDays(3, function(err, obj){
-	// 	console.log(obj);
-	// });
+  //this is the format we are using
+  // let zip = '07067'
+  //   weather.find({search: zip, degreeType: 'F'}, function(err, result) {
+  //     if(err) console.log(err);
   //
-  // weather.getAllWeather(function(err, JSONObj){
-	// 	console.log(JSONObj);
-	// });
-
-
-  // weather.getTemperature(function(err, temp){
-	// 		if(err) console.log(err);
+  //     let forecast = result[0].forecast
+  //     let current =result[0].current
   //
-	// 		// normal execution with no error
-	// 		});
-
-  // weather.getWeatherForecastForDays(1, function(err, obj){
-	// 	console.log(obj);
-	// });
+  //   });
+  //
+  //
