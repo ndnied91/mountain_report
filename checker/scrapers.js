@@ -12,8 +12,8 @@ const moment = require('moment-timezone');
 const keys = require('./config/keys')
 mongoose.connect(keys.mongoURI)
 
-const mods = require("./helperFuncs.js");
-const weather = require('weather-js');
+var mods = require("./helperFuncs.js");
+var weather = require('weather-js');
 
 
 const Report = require('./Models/Resort.js')
@@ -21,11 +21,14 @@ const Report = require('./Models/Resort.js')
 
 
 
-let zip = '07067'
-  weather.find({search: zip, degreeType: 'F'}, function(err, result) {
-    if(err) console.log(err);
-    console.log( JSON.stringify(result, null, 2))
-  });
+// let zip = '07067'
+//   weather.find({search: zip, degreeType: 'F'}, function(err, result) {
+//     if(err) console.log(err);
+//
+//     let forecast = result[0].forecast
+//     let current =result[0].current
+//
+//   });
 
 
 
@@ -51,14 +54,42 @@ const updateBlueMnt = async()=>{
          async function update(){
            const filter = { name: 'Blue Mountain' };
            const update = {
-             trails: lifts[1], lifts: lifts[3], link : 'https://www.skibluemt.com/',
-             weather: 'https://www.skibluemt.com',
+             trails: lifts[1],
+             lifts: lifts[3],
+             link : 'https://www.skibluemt.com/',
+             report: 'https://www.skibluemt.com',
              timestamp : moment.tz(Date.now(), "America/New_York").format()
             };
               await Report.findOneAndUpdate(filter, update);
       }
 
       update()
+
+
+////update forcast area
+      async function updateForcast(name, weather){
+        console.log(weather)
+        const filter = { name};
+        const update = { weather };
+            await Report.findOneAndUpdate(filter, update);
+        }
+
+         weather.find({search: '18071', degreeType: 'F'}, async function(err, result) {
+          if(err) console.log(err);
+          if(result){
+
+            let current = {
+              temperature : result[0].current.temperature, skytext : result[0].current.skytext, date : result[0].current.date,
+              feelslike : result[0].current.feelslike, shortday : result[0].current.shortday, imageUrl : result[0].current.imageUrl
+            }
+
+            let forecast = result[0].forecast
+
+              updateForcast( 'Blue Mountain',  [{current , forecast}])
+          }
+        });
+////update forcast area
+
 
     })
 }
@@ -93,6 +124,8 @@ const updateMntCreek = () =>{
                       trails: trails[1],
                       lifts: trails[3],
                       link : 'https://www.mountaincreek.com/mountainreport',
+                      report: null,
+                      weather: null,
                       timestamp : moment.tz(Date.now(), "America/New_York").format()
                     })
                     try{
@@ -106,6 +139,30 @@ const updateMntCreek = () =>{
        }
 
        update()
+
+       ////update forcast area
+             async function updateForcast(name, weather){
+               console.log(weather)
+               const filter = { name};
+               const update = { weather };
+                   await Report.findOneAndUpdate(filter, update);
+               }
+
+                weather.find({search: '07462', degreeType: 'F'}, async function(err, result) {
+                 if(err) console.log(err);
+                 if(result){
+
+                   let current = {
+                     temperature : result[0].current.temperature, skytext : result[0].current.skytext, date : result[0].current.date,
+                     feelslike : result[0].current.feelslike, shortday : result[0].current.shortday, imageUrl : result[0].current.imageUrl
+                   }
+
+                   let forecast = result[0].forecast
+
+                     updateForcast( 'Mountain Creek',  [{current , forecast}])
+                 }
+               });
+       ////update forcast area
       })
 }
 
@@ -133,14 +190,38 @@ const updateWindham = () =>{
           trails: `${trails[1]}/54`,
           lifts: `${trails[3]}/11` ,
           terrain: trails[5],
-          link : 'https://www.windhammountain.com/snow-report/',
-          weather: 'https://www.windhammountain.com/snow-report/',
+          link : 'https://www.windhammountain.com//',
+          report: 'https://www.windhammountain.com/snow-report/',
           timestamp : moment.tz(Date.now(), "America/New_York").format()
          };
             await Report.findOneAndUpdate(filter, update);
         }
 
         update()
+
+        ////update forcast area
+              async function updateForcast(name, weather){
+                console.log(weather)
+                const filter = { name};
+                const update = { weather };
+                    await Report.findOneAndUpdate(filter, update);
+                }
+
+                 weather.find({search: '12496', degreeType: 'F'}, async function(err, result) {
+                  if(err) console.log(err);
+                  if(result){
+
+                    let current = {
+                      temperature : result[0].current.temperature, skytext : result[0].current.skytext, date : result[0].current.date,
+                      feelslike : result[0].current.feelslike, shortday : result[0].current.shortday, imageUrl : result[0].current.imageUrl
+                    }
+
+                    let forecast = result[0].forecast
+
+                      updateForcast( 'Windham Mountain',  [{current , forecast}])
+                  }
+                });
+        ////update forcast area
   })
 }
 
@@ -163,14 +244,38 @@ const updateWhiteface = () => {
          const filter = { name: 'Whiteface Mountain' };
          const update = {
            trails: trails[1], lifts: lifts[1],
-           link : 'https://whiteface.com/mountain/conditions',
-           weather: "https://whiteface.com/mountain/conditions/",
+           link : 'https://whiteface.com/mountain/',
+           report: "https://whiteface.com/mountain/conditions/",
            timestamp : moment.tz(Date.now(), "America/New_York").format()
           };
              await Report.findOneAndUpdate(filter, update);
          }
 
          update()
+
+         ////update forcast area
+               async function updateForcast(name, weather){
+                 console.log(weather)
+                 const filter = { name};
+                 const update = { weather };
+                     await Report.findOneAndUpdate(filter, update);
+                 }
+
+                  weather.find({search: '12997', degreeType: 'F'}, async function(err, result) {
+                   if(err) console.log(err);
+                   if(result){
+
+                     let current = {
+                       temperature : result[0].current.temperature, skytext : result[0].current.skytext, date : result[0].current.date,
+                       feelslike : result[0].current.feelslike, shortday : result[0].current.shortday, imageUrl : result[0].current.imageUrl
+                     }
+
+                     let forecast = result[0].forecast
+
+                       updateForcast( 'Whiteface Mountain',  [{current , forecast}])
+                   }
+                 });
+         ////update forcast area
    })
 
 }
@@ -195,7 +300,7 @@ const updateMntSnow = () =>{
             lifts: lifts[0],
             terrain: lifts[2],
             link: "https://www.mountsnow.com/the-mountain/mountain-conditions/lift-and-terrain-status.aspx",
-            weather: "https://www.mountsnow.com/the-mountain/mountain-conditions/snow-and-weather-report.aspx",
+            report: "https://www.mountsnow.com/the-mountain/mountain-conditions/snow-and-weather-report.aspx",
             timestamp : moment.tz(Date.now(), "America/New_York").format()
            };
               await Report.findOneAndUpdate(filter, update);
@@ -203,8 +308,34 @@ const updateMntSnow = () =>{
 
           update()
 
+          ////update forcast area
+                async function updateForcast(name, weather){
+                  console.log(weather)
+                  const filter = { name};
+                  const update = { weather };
+                      await Report.findOneAndUpdate(filter, update);
+                  }
+
+                   weather.find({search: '05356', degreeType: 'F'}, async function(err, result) {
+                    if(err) console.log(err);
+                    if(result){
+
+                      let current = {
+                        temperature : result[0].current.temperature, skytext : result[0].current.skytext, date : result[0].current.date,
+                        feelslike : result[0].current.feelslike, shortday : result[0].current.shortday, imageUrl : result[0].current.imageUrl
+                      }
+
+                      let forecast = result[0].forecast
+
+                        updateForcast( 'Mount Snow',  [{current , forecast}])
+                    }
+                  });
+          ////update forcast area
+
   })
 }
+
+
 
 
 
@@ -217,6 +348,7 @@ const updateHunter = () =>{
       let lifts = $(".terrain_summary__tab_main__text").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'').replace(/%/g, '').replace(/TrailsOpen/i, "Trails").replace(/LiftsOpen/i, "Lifts").replace(/TerrainOpen/i, "Terrain")
        lifts = lifts.match(/[A-Z]+|[^a-z]+/gi);
 
+
        async function update(){
          const filter = { name: 'Hunter Mountain' };
          const update = {
@@ -224,13 +356,37 @@ const updateHunter = () =>{
            lifts: lifts[0],
            terrain: lifts[2],
            link: "https://www.huntermtn.com/the-mountain/mountain-conditions/lift-and-terrain-status.aspx",
-           weather: "https://www.huntermtn.com/the-mountain/mountain-conditions/snow-and-weather-report.aspx",
+           report: "https://www.huntermtn.com/the-mountain/mountain-conditions/snow-and-weather-report.aspx",
            timestamp : moment.tz(Date.now(), "America/New_York").format()
           };
+
              await Report.findOneAndUpdate(filter, update);
          }
 
-         update()
+         update() //for everything other than weather
+
+               async function updateForcast(name, weather){
+                 console.log(weather)
+                 const filter = { name};
+                 const update = { weather };
+                     await Report.findOneAndUpdate(filter, update);
+                 }
+
+                  weather.find({search: '12442', degreeType: 'F'}, async function(err, result) {
+                   if(err) console.log(err);
+                   if(result){
+
+                     let current = {
+                       temperature : result[0].current.temperature, skytext : result[0].current.skytext, date : result[0].current.date,
+                       feelslike : result[0].current.feelslike, shortday : result[0].current.shortday, imageUrl : result[0].current.imageUrl
+                     }
+
+                     let forecast = result[0].forecast
+
+                       updateForcast( 'Hunter Mountain',  [{current , forecast}])
+                   }
+                 });
+
   })
 }
 
@@ -254,13 +410,37 @@ const updateStowe = () =>{
             lifts: lifts[4],
             terrain: lifts[0],
             link: "https://www.stowe.com/the-mountain/mountain-conditions/terrain-and-lift-status.aspx",
-            weather: "https://www.stowe.com/the-mountain/mountain-conditions/snow-and-weather-report.aspx",
+            report: "https://www.stowe.com/the-mountain/mountain-conditions/snow-and-weather-report.aspx",
             timestamp : moment.tz(Date.now(), "America/New_York").format()
            };
               await Report.findOneAndUpdate(filter, update);
           }
 
           update()
+
+          ////update forcast area
+                async function updateForcast(name, weather){
+                  console.log(weather)
+                  const filter = { name};
+                  const update = { weather };
+                      await Report.findOneAndUpdate(filter, update);
+                  }
+
+                   weather.find({search: '05672', degreeType: 'F'}, async function(err, result) {
+                    if(err) console.log(err);
+                    if(result){
+
+                      let current = {
+                        temperature : result[0].current.temperature, skytext : result[0].current.skytext, date : result[0].current.date,
+                        feelslike : result[0].current.feelslike, shortday : result[0].current.shortday, imageUrl : result[0].current.imageUrl
+                      }
+
+                      let forecast = result[0].forecast
+
+                        updateForcast( 'Stowe',  [{current , forecast}])
+                    }
+                  });
+          ////update forcast area
    })
 }
 

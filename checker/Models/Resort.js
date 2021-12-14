@@ -7,7 +7,8 @@ const resortSchema = new Schema({
   lifts: String ,
   terrain: String,
   link: String,
-  weather: String,
+  report: String,
+  weather: Array,
   timestamp: String,
 })
 

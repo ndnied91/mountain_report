@@ -16,7 +16,7 @@ console.log(`Current time: ${new Date()}`);
 
 
 
-schedule.scheduleJob('44 * * * *', async function(){
+schedule.scheduleJob('31 * * * *', async function(){
     await mnts.updateWhiteface()
     await mnts.updateBlueMnt()
     console.log('updating whiteface and blue mountain')

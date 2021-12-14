@@ -27,7 +27,8 @@ const PORT = process.env.port || 3000
 require('./scheduler.js')
 
 
-
+let mnts = require("./scrapers.js");
+var weather = require('weather-js');
 
 
 app.get('/api/mountains', async (req,res)  =>{
@@ -44,45 +45,42 @@ app.post('/api/mountains' , async (req,res)=>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-// const getStowe = () =>{
-//   return rp('https://www.stowe.com/the-mountain/mountain-conditions/terrain-and-lift-status.aspx')
-//   .then(function(htmlString){
-//       const $ = cheerio.load(htmlString) // loads cheerio in this url so we can use it like jquery
-//       // let i,j, temporary, chunk = 2 , data = [];
 //
-//       let lifts = $(".terrain_summary__tab_main__text").children().text().toString().replace(/\t/g, '').replace(/\n/g ,'').replace(/ /g ,'').replace(/%/g, '').replace(/TrailsOpen/i, "Trails").replace(/LiftsOpen/i, "Lifts").replace(/TerrainOpen/i, "Terrain")
-//        lifts = lifts.match(/[A-Z]+|[^a-z]+/gi);
+// let zip = '07067'
+//   weather.find({search: zip, degreeType: 'F'}, function(err, result) {
+//     if(err) console.log(err);
 //
-//         async function update(){
-//           const filter = { name: 'Stowe' };
-//           const update = {
-//                 trails: 'lifts[2] ',
-//                 lifts: lifts[4],
-//                 terrain: lifts[0],
-//             timestamp : moment.tz(Date.now(), "America/New_York").format()
-//            };
-//               await Report.findOneAndUpdate(filter, update);
-//           }
+//     let forecast = result[0].forecast
+//     let current =result[0].current
 //
-//           update()
-//    })
-// }
+//   });
+//
+//
 
 
 
 
 
 
+
+
+
+
+
+
+async function update(){
+
+  console.log('updating blue')
+
+   await mnts.updateWindham()
+   await mnts.updateBlueMnt()
+   await mnts.updateStowe()
+   await mnts.updateHunter()
+   await mnts.updateMntSnow()
+   await mnts.updateWindham()
+}
+
+update()
 
 
 // app.get('/blu', async(req,res)=>{
