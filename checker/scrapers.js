@@ -107,7 +107,9 @@ const updateWindham = () =>{
       async function update(){
         const filter = { name: 'Windham Mountain' };
         const update = {
-          trails: trails[1], lifts: trails[3], terrain: trails[5],
+          trails: `${trails[1]}/54`,
+          lifts: `${trails[3]}/11` , 
+          terrain: trails[5],
           link : 'https://www.windhammountain.com/snow-report/',
           weather: 'https://www.windhammountain.com/snow-report/',
           timestamp : moment.tz(Date.now(), "America/New_York").format()

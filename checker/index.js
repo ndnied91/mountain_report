@@ -13,10 +13,7 @@ mongoose.connect(keys.mongoURI)
 
 app.use(bodyParser.json());
 
-
 var mods = require("./helperFuncs.js");
-
-var mnts = require("./scrapers.js");
 
 
 const Resort = require('./Models/Resort.js')
@@ -26,29 +23,24 @@ const Resort = require('./Models/Resort.js')
 const PORT = process.env.port || 3000
 
 
-//need to set up scheduler for mountain updates
+require('./scheduler.js')
 
-// arr.push(await mnts.updateMntCreek())
-// arr.push(await mnts.updateBlueMnt()) //put this into a scheduler , and call from database instead
-// arr.push(await mnts.updateWindham())
-// arr.push(await mnts.updateWhiteface())
-// arr.push(await mnts.updateMntSnow())
-// arr.push(await mnts.updateHunter())
-// arr.push(await mnts.updateStowe())
+
+
 
 
 
 
 app.get('/api/mountains', async (req,res)  =>{
   console.log('call being made...')
-  let mnts =  await Resort.find()
-    res.send(mnts)
+  let mountains =  await Resort.find()
+    res.send(mountains)
 })
 
 
 app.post('/api/mountains' , async (req,res)=>{
-  console.log(req.body)
-  //gets desired mouintains
+  const mountains = await Resort.find({ 'name': { $in: req.body } });
+    res.send(mountains)
 })
 
 

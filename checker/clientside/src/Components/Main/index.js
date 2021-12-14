@@ -24,7 +24,7 @@ const renderMnts = () => {
 
         {terrain > 1 ? <div> Terrain: {terrain} </div> : null}
 
-        <a href={link}>Weather</a>
+        <a href={link} target="_blank">Weather</a>
 
        </div>
     )

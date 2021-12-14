@@ -1,7 +1,7 @@
 
 export default function(state=[] , action){
   switch(action.type){
-    case 'FETCH_ALL_MNTS':
+    case 'FETCH_MNTS':
       return action.payload
 
     default:

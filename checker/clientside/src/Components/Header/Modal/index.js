@@ -30,9 +30,7 @@ const Modal = props => {
   []);
 
   const collectProps=(props)=>{
-    console.log(props.selection)
-    //make a call to external
-    props.fetchSelectedMountains(props.selection)
+    props.fetchSelectedMountains(props.selection) //filers out selected
   }
 
   const handleChange=(e)=> {
@@ -52,10 +50,13 @@ const Modal = props => {
           </div>
 
           <div className="dpdn">
-              <input type="checkbox" value="Whiteface" onChange={e => handleChange(e)}/> Whiteface <br />
-              <input type="checkbox" value="Mnt Snow" onChange={e => handleChange(e)}/> Mnt Snow <br />
-              <input type="checkbox" value="Blu Mnt" onChange={e => handleChange(e)}/> Blue Mountain <br />
+              <input type="checkbox" value="Blue Mountain" onChange={e => handleChange(e)}/> Blue Mountain <br />
+              <input type="checkbox" value="Hunter Mountain" onChange={e => handleChange(e)}/> Hunter Mountain <br />
+              <input type="checkbox" value="Mount Snow" onChange={e => handleChange(e)}/> Mount Snow <br />
+              <input type="checkbox" value="Mountain Creek" onChange={e => handleChange(e)}/> Mountain Creek <br />
               <input type="checkbox" value="Stowe" onChange={e => handleChange(e)}/> Stowe <br />
+              <input type="checkbox" value="Windham Mountain" onChange={e => handleChange(e)}/> Windham Mountain <br />
+              <input type="checkbox" value="Whiteface Mountain" onChange={e => handleChange(e)}/> Whiteface <br />
           </div>
 
 
