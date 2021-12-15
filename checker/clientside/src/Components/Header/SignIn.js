@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 
 import { Button, Modal } from 'react-bootstrap';
-import {handleSubmit} from '../../actions'
+import {verifyUser} from '../../actions'
 import {connect} from 'react-redux'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -21,7 +21,7 @@ const SignIn = (props)=> {
      event.preventDefault()
      console.log(event)
      handleClose()
-     props.handleSubmit(event.target)
+     props.verifyUser(event.target)
   }
 
   return (
@@ -57,4 +57,4 @@ const SignIn = (props)=> {
   );
 }
 
-export default connect( null, {handleSubmit})(SignIn);
+export default connect( null, {verifyUser})(SignIn);

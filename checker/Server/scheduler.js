@@ -36,3 +36,11 @@ schedule.scheduleJob('31 * * * *', async function(){
       await mnts.updateMntCreek()
       console.log('updating hunter/ stowe / creek')
    });
+
+
+   const update= async() =>{
+     console.log('upating whiteface')
+    await mnts.updateWhiteface()
+   }
+
+   update()

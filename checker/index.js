@@ -10,29 +10,61 @@ const moment = require('moment-timezone');
 
 let request = require('request');
 
-const keys = require('./config/keys')
+const keys = require('./Server/config/keys') //config keys
 mongoose.connect(keys.mongoURI)
+
+
+
+const passport = require("passport");
+const passportLocal = require("passport-local").Strategy;
+const cookieParser = require("cookie-parser");
+
+const session = require("express-session");
+
+
 
 app.use(bodyParser.json());
 
-const mods = require("./helperFuncs.js");
+ app.use(bodyParser.urlencoded({ extended: true }));
+
+
+app.use(
+  session({
+    secret: 'keys.secretKey',
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+app.use(cookieParser("mountain"));
+app.use(passport.initialize());
+app.use(passport.session());
+
+require("./Server/services/passportConfig")(passport);
 
 
 
-const Resort = require('./Models/Resort.js')
-const User = require('./Models/User.js')
+// const passport = require('passport')
+// const passportLocal = require("passport-local").Strategy;
+// const bcrypt = require("bcryptjs");
+
+
+
+const Resort = require('./Server/Models/Resort.js')
+
 
 const PORT = process.env.port || 3000
 
 
-require('./scheduler.js')
+require('./Server/scheduler.js')
 
 
-let mnts = require("./scrapers.js");
+let mnts = require("./Server/scrapers.js");
 var weather = require('weather-js');
 
 
 
+//all auth routes
+require("./Server/Auth")(app);
 
 
 
@@ -40,7 +72,7 @@ var weather = require('weather-js');
 // const user = new User({
 //   name:"name",
 //   password: "testing",
-//   selection: ['Mountain Creek' , ['Stowe']]
+//   selection: null
 //
 // })
 // try{
@@ -51,6 +83,18 @@ var weather = require('weather-js');
 // }
 
 
+//
+// let zip = '07067'
+//   weather.find({search: zip, degreeType: 'F'}, function(err, result) {
+//     if(err) console.log(err);
+//
+//     let forecast = result[0].forecast
+//     let current =result[0].current
+//
+//     console.log(current)
+//
+//   });
+//
 
 
 
@@ -61,7 +105,6 @@ var weather = require('weather-js');
 
 
 app.get('/api/mountains', async (req,res)  =>{
-  console.log('call being made...')
   let mountains =  await Resort.find()
     res.send(mountains)
 })
@@ -72,20 +115,20 @@ app.post('/api/mountains' , async (req,res)=>{
     res.send(mountains)
 })
 
-
-app.post('/api/login' , async (req,res)=>{
-  console.log('HERE')
-    console.log(req.body)
-    // console.log(req.body.username)
-
-    //get username
-
-    //set up user
-    User.findOne({ name: req.body.username }, function (err, result) {
-        console.log(result)
-    });
-})
-
+//
+// app.post('/api/login' , async (req,res)=>{
+//   console.log('HERE')
+//     console.log(req.body)
+//     // console.log(req.body.username)
+//
+//     //get username
+//
+//     //set up user
+//     User.findOne({ name: req.body.username }, function (err, result) {
+//         console.log(result)
+//     });
+// })
+//
 
 
 
@@ -98,7 +141,7 @@ async function update(){
      // await mnts.updateMntSnow()
      // await mnts.updateWindham()
      // await mnts.updateMntCreek()
-        await mnts.updateWhiteface()
+        // await mnts.updateWhiteface()
 }
 
 // update()

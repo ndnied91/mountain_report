@@ -260,6 +260,7 @@ const updateWhiteface = () => {
                      await Report.findOneAndUpdate(filter, update);
                  }
 
+                  ///
                   weather.find({search: '12997', degreeType: 'F'}, async function(err, result) {
                    if(err) console.log(err);
                    if(result){
