@@ -19,6 +19,8 @@ const SignIn = (props)=> {
 
   const handleSubmit = (event) => {
      event.preventDefault()
+     console.log(event)
+     handleClose()
      props.handleSubmit(event.target)
   }
 
@@ -44,7 +46,7 @@ const SignIn = (props)=> {
 
                 <Modal.Footer>
                   <Button variant="secondary" onClick={props.onClose}> Forgot Password </Button>
-                  <Button variant="primary" type="submit" onClick={()=>handleClose()}> Sign In </Button>
+                  <Button variant="primary" type="submit"> Sign In </Button>
                 </Modal.Footer>
            </form>
         </div>

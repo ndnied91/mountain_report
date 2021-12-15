@@ -24,6 +24,7 @@ export const  moutainSelections= (selection) =>{
 export const handleSubmit = (values) => async dispatch => {
 
   let vals = {username: values.username.value, password: values.password.value}
+  console.log(vals)
   const res = await axios.post('/api/login', vals)
   //get response from databse
 }

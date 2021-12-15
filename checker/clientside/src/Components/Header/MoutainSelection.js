@@ -48,9 +48,7 @@ const MoutainSelection = (props)=> {
 
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
+          <Button variant="secondary" onClick={handleClose}> Close </Button>
           <Button variant="primary" onClick={()=>props.fetchSelectedMountains(props.selection).then(()=>handleClose())}>
             Save Changes
           </Button>
@@ -61,7 +59,6 @@ const MoutainSelection = (props)=> {
 }
 
 const mapStateToProps=(state)=>{
-  console.log(state.selection)
   return {selection: state.selection.selection }
 }
 

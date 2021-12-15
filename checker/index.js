@@ -20,6 +20,7 @@ const mods = require("./helperFuncs.js");
 
 
 const Resort = require('./Models/Resort.js')
+const User = require('./Models/User.js')
 
 const PORT = process.env.port || 3000
 
@@ -29,6 +30,34 @@ require('./scheduler.js')
 
 let mnts = require("./scrapers.js");
 var weather = require('weather-js');
+
+
+
+
+
+
+
+// const user = new User({
+//   name:"name",
+//   password: "testing",
+//   selection: ['Mountain Creek' , ['Stowe']]
+//
+// })
+// try{
+//    user.save()
+//
+// }catch(err){
+//   console.log(err)
+// }
+
+
+
+
+
+
+
+
+
 
 
 app.get('/api/mountains', async (req,res)  =>{
@@ -45,7 +74,16 @@ app.post('/api/mountains' , async (req,res)=>{
 
 
 app.post('/api/login' , async (req,res)=>{
+  console.log('HERE')
     console.log(req.body)
+    // console.log(req.body.username)
+
+    //get username
+
+    //set up user
+    User.findOne({ name: req.body.username }, function (err, result) {
+        console.log(result)
+    });
 })
 
 
@@ -63,7 +101,28 @@ async function update(){
         await mnts.updateWhiteface()
 }
 
-update()
+// update()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
