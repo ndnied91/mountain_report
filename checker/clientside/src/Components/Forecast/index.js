@@ -29,7 +29,7 @@ class Forecast extends React.Component{
               {item.shortday}
               Date:{item.date.replace('2021-', '').replace('2022-', '').replace('-', '/')}
 
-            <img src={url} alt={'Weather image'}/>
+            <img src={url} alt={'Weather'}/>
              </div>
            )
         });
