@@ -1,38 +1,6 @@
 //
 import React, { useState } from "react";
-// import Modal from "./Modal";
-// import SignInModal from "./SignInModal";
-//
-// import {signIn} from '../../actions'
-//
-// import './style.css'
-//
-//  const Header = ()=> {
-//   const [show, setShow] = useState(false);
-//   const [showSignIn, setShowSignIn] = useState(false);
-//
-//   return (
-//     <div className="App">
-//
-//         <h2>Moutains</h2>
-//
-//
-//         <button onClick={() => setShowSignIn(true)}>Login</button>
-//         <SignInModal title="Login" onClose={() => setShowSignIn(false)} showSignIn={showSignIn} />
-//
-//         <button onClick={() => setShow(true)}>Select Mountains</button>
-//         <Modal title="Mountain Selector" onClose={() => setShow(false)} show={show} />
-//
-//     </div>
-//   );
-// }
-//
-//
-//
-//
-// export default Header
-//
-//
+
 
 
 import { Button, Modal } from 'react-bootstrap';
