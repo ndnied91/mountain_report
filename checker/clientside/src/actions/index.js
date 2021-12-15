@@ -18,3 +18,12 @@ export const fetchSelectedMountains = (values) => async dispatch => {
 export const  moutainSelections= (selection) =>{
   return ({ type: 'ADD_ITEM' , payload : selection })
 }
+
+
+
+export const handleSubmit = (values) => async dispatch => {
+
+  let vals = {username: values.username.value, password: values.password.value}
+  const res = await axios.post('/api/login', vals)
+
+}

@@ -40,6 +40,7 @@ const Modal = props => {
   return ReactDOM.createPortal(
     <CSSTransition
       in={props.show}
+      unmount={true}
       //here was the unmount thing
       timeout={{ enter: 0, exit: 300 }}
     >

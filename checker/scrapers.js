@@ -110,7 +110,7 @@ const updateMntCreek = () =>{
             const update = {
               trails: trails[1], lifts: trails[3],
               link : 'https://www.mountaincreek.com/mountainreport',
-              weather: 'https://www.mountaincreek.com/5dayforecast',
+              report: 'https://www.mountaincreek.com/5dayforecast',
               timestamp : moment.tz(Date.now(), "America/New_York").format()
              };
                const res = await Report.findOneAndUpdate(filter, update);
@@ -123,9 +123,7 @@ const updateMntCreek = () =>{
                       name:"Mountain Creek",
                       trails: trails[1],
                       lifts: trails[3],
-                      link : 'https://www.mountaincreek.com/mountainreport',
-                      report: null,
-                      weather: null,
+                      report : 'https://www.mountaincreek.com/mountainreport',
                       timestamp : moment.tz(Date.now(), "America/New_York").format()
                     })
                     try{
@@ -255,6 +253,7 @@ const updateWhiteface = () => {
 
          ////update forcast area
                async function updateForcast(name, weather){
+
                  console.log(weather)
                  const filter = { name};
                  const update = { weather };

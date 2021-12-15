@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {fetchAllMountains} from '../../actions'
 import './style.css'
 
+import Forecast from '../Forecast'
 class Main extends React.Component{
 
   componentDidMount(){
@@ -13,18 +14,20 @@ class Main extends React.Component{
 
 
 
-
 const renderMnts = () => {
-  return this.props.mountains.map(( {name, trails, lifts, terrain , link} , index )=>{
+  return this.props.mountains.map(( {name, trails, lifts, terrain , link, weather} , index )=>{
+
     return(
       <div key={index} className="indmnt">
         <h1>{name}</h1>
         <div> Trails: {trails} </div>
         <div> Lifts: {lifts} </div>
 
-        {terrain > 1 ? <div> Terrain: {terrain} </div> : null}
+          {terrain > 1 ? <div> Terrain: {terrain} </div> : null}
 
-        <a href={link} target="_blank">Weather</a>
+          {weather !== null ? <Forecast weather = {weather}/>: null}
+
+        <a href={link} target="_blank"> Mountain Report</a>
 
        </div>
     )
@@ -42,12 +45,8 @@ const renderMnts = () => {
 
 
 const mapStateToProps=(state)=>{
-
+  console.log(state)
   return { mountains: state.mountains}
 }
 
 export default connect(mapStateToProps , {fetchAllMountains})(Main)
-
-
-
-// <Report item="hi"/>
