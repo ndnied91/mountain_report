@@ -62,6 +62,27 @@ module.exports = (app) => {
 
 
 
+
+app.post('/api/user/cookie', (req, res) => {
+
+    User.findOne({ name: req.body.cookie }, async (err, doc) => {
+      if (err) throw err;
+
+      if(!doc){
+        res.send({name: null, selection: null})
+      }
+      else{
+        // res.send(  {name: doc.name, selection: doc.selection.selection});
+        res.send({name: doc.name, selection: ['Mountain Creek' , 'Stowe'] });
+      }
+
+      })
+});
+
+
+
+
+
 app.get('/dashboard', requireLogin, (req,res)=>{
   res.sendStatus(200)
 })
@@ -69,11 +90,11 @@ app.get('/dashboard', requireLogin, (req,res)=>{
 
 
 //this route gets us the ID that is used for the cookie
-app.get('/api/current_user/id', requireLogin,  (req,res)=>{
+// app.get('/api/current_user/id', requireLogin,  (req,res)=>{
       // console.log('Cookie' , req.cookies.username);
       // console.log('Session' ,req.session.passport.user);
-      res.send(req.session.passport.user)
-  })
+  //     res.send(req.session.passport.user)
+  // })
 
 //this route is used for getting the current users name
   // app.get('/api/current_user/user', requireLogin,  (req,res)=>{

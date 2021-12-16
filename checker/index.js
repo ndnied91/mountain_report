@@ -115,25 +115,11 @@ app.post('/api/mountains' , async (req,res)=>{
     res.send(mountains)
 })
 
-//
-// app.post('/api/login' , async (req,res)=>{
-//   console.log('HERE')
-//     console.log(req.body)
-//     // console.log(req.body.username)
-//
-//     //get username
-//
-//     //set up user
-//     User.findOne({ name: req.body.username }, function (err, result) {
-//         console.log(result)
-//     });
-// })
-//
 
 
 
 
-async function update(){
+// async function update(){
      // await mnts.updateWindham()
      // await mnts.updateBlueMnt()
      // await mnts.updateStowe()
@@ -142,7 +128,7 @@ async function update(){
      // await mnts.updateWindham()
      // await mnts.updateMntCreek()
         // await mnts.updateWhiteface()
-}
+// }
 
 // update()
 

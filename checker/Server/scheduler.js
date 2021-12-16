@@ -37,10 +37,10 @@ schedule.scheduleJob('31 * * * *', async function(){
       console.log('updating hunter/ stowe / creek')
    });
 
-
-   const update= async() =>{
-     console.log('upating whiteface')
-    await mnts.updateWhiteface()
-   }
-
-   update()
+   // 
+   // const update= async() =>{
+   //   console.log('upating whiteface')
+   //  await mnts.updateWhiteface()
+   // }
+   //
+   // update()
