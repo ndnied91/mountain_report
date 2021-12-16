@@ -19,14 +19,16 @@ module.exports = (app) => {
 
 
   app.post("/api/login", (req, res, next) => {
+    console.log(req.body)
     passport.authenticate("local", (err, user, info) => {
+      // console.log('user is...')
+      // console.log(user)
       if (err) throw err;
       if (!user) res.send("No User Exists");
       else {
         req.logIn(user, (err) => {
           if (err) throw err;
-          res.send(req.user._id);
-          console.log(req.user);
+          res.send(req.user.name);
         });
       }
     })(req, res, next);
@@ -46,10 +48,8 @@ module.exports = (app) => {
           password:  await bcrypt.hash(req.body.password, 10) ,
           selection: null //can be modified
         });
-
-        await newUser.save();
-
-        res.send("User Created");
+          await newUser.save();
+          res.send(newUser.name);
       }
     });
   });
@@ -76,11 +76,11 @@ app.get('/api/current_user/id', requireLogin,  (req,res)=>{
   })
 
 //this route is used for getting the current users name
-  app.get('/api/current_user/user', requireLogin,  (req,res)=>{
-        res.send(req.user)
-        // res.send(req.user.username)
-    })
-
+  // app.get('/api/current_user/user', requireLogin,  (req,res)=>{
+  //       res.send(req.user)
+  //       // res.send(req.user.username)
+  //   })
+  //
 
 
 

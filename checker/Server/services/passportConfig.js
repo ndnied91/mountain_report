@@ -8,13 +8,16 @@ const localStrategy = require("passport-local").Strategy;
 module.exports = function (passport) {
   passport.use(
     new localStrategy((username, password, done) => {
-
-      User.findOne({ username: username }, (err, user) => {
-            console.log('looking for match')
-            console.log('user name is ', username)
+      console.log('iin passport config')
+      console.log(username, password)
+      User.findOne({ name: username }, (err, user) => {
+            // console.log('looking for match')
+            // console.log('user name is ', username)
         if (err) throw err;
         if (!user) return done(null, false);
         bcrypt.compare(password, user.password, (err, result) => {
+
+          // console.log(`found user${user}, comparing passwords`)
           if (err) throw err;
           if (result === true) {
             return done(null, user);

@@ -20,6 +20,7 @@ const SignIn = (props)=> {
   const handleSubmit = (event) => {
      event.preventDefault()
      props.saveUser(event.target)
+      handleClose()
   }
 
   return (
@@ -39,12 +40,11 @@ const SignIn = (props)=> {
 
         <div>
             <form onSubmit={(event)=>handleSubmit(event) }>
-                <label> Userame: <input type="text" name="username" /> </label>
+                <label> Name: <input type="text" name="username" /> </label>
                 <label> Password: <input type="password" name="password" /> </label>
 
                 <Modal.Footer>
-
-                  <Button variant="primary" type="submit" onClick={()=>handleClose()}> Sign Up! </Button>
+                  <Button variant="primary" type="submit"> Sign Up </Button>
                 </Modal.Footer>
            </form>
         </div>

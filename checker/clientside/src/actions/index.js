@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import Cookies from 'js-cookie'
 
 export const fetchAllMountains = () => async dispatch => {
   const res = await axios.get(`/api/mountains`)
@@ -22,11 +22,10 @@ export const  moutainSelections= (selection) =>{
 
 
 export const verifyUser = (values) => async dispatch => {
-
   let vals = {username: values.username.value, password: values.password.value}
-  console.log(vals)
-  const res = await axios.post('/api/login', vals)
-
+    const res = await axios.post('/api/login', vals)
+    dispatch({ type: 'CURRENT_USER' , payload: res.data})
+          Cookies.set('username' , res.data)
   //get response from databse
 }
 
@@ -34,9 +33,8 @@ export const verifyUser = (values) => async dispatch => {
 
 
 export const saveUser = (values) => async dispatch => {
-
   let vals = {username: values.username.value, password: values.password.value}
-  console.log(vals)
-  const res = await axios.post('/api/user', vals)
-  //get response from databse
+    const res = await axios.post('/api/user', vals)
+    dispatch({ type: 'CURRENT_USER' , payload: res.data})
+    Cookies.set('username' , res.data)
 }

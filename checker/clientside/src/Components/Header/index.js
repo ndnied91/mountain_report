@@ -1,6 +1,6 @@
 //
 import React from "react";
-
+import {connect} from 'react-redux'
 
 
 
@@ -14,6 +14,13 @@ const Header = (props)=> {
   return (
     <div>
      <h2>Mountains</h2>
+
+
+<div>
+    {props.user}
+    //save this into cookies
+</div>
+
 
      <div>
         <MoutainSelection/>
@@ -30,5 +37,9 @@ const Header = (props)=> {
 }
 
 
+const mapStateToProps = (state) => {
+  console.log(state.user)
+  return {user : state.user}
+}
 
-export default Header;
+export default connect(mapStateToProps , null )(Header)
