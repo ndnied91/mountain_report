@@ -17,10 +17,9 @@ module.exports = (app) => {
   app.post("/api/login", (req, res, next) => {
     console.log(req.body)
     passport.authenticate("local", (err, user, info) => {
-      // console.log('user is...')
-      // console.log(user)
+
       if (err) throw err;
-      if (!user) res.send("No User Exists");
+      if (!user) res.send({user: null , error: 'Unable to verify user'});
       else {
         req.logIn(user, (err) => {
           if (err) throw err;
@@ -28,7 +27,10 @@ module.exports = (app) => {
           console.log('USER FOUND ....')
 
           let user={
-                    user: req.user.name, selection: req.user.selection, id: req.user._id
+                    user: req.user.name,
+                    selection: req.user.selection,
+                    id: req.user._id,
+                    error: null
                 }
 
                 console.log('sending back' , user)
@@ -86,10 +88,8 @@ app.post('/api/user/cookie', (req, res) => {
       }
       else{
         console.log('user found via cookie')
-        res.send({ user: doc.name, selection: doc.selection , id: req.body.cookie });
+        res.send({ user: doc.name, selection: doc.selection , id: req.body.cookie , error: null  });
         }
-
-
 
       })
 });

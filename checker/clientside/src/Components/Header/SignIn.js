@@ -17,11 +17,14 @@ const SignIn = (props)=> {
   const handleShow = () => setShow(true);
 
 
-  const handleSubmit = (event) => {
+  const handleSubmit =async (event) => {
      event.preventDefault()
-     console.log(event)
-     handleClose()
-     props.verifyUser(event.target)
+     const res = await props.verifyUser(event.target)
+
+    if(res === true){
+      handleClose()
+    }
+
   }
 
   return (
@@ -45,8 +48,10 @@ const SignIn = (props)=> {
                 <label> Password: <input type="password" name="password" /> </label>
 
                 <Modal.Footer>
+                  <div>{props.error}</div>
                   <Button variant="secondary" onClick={props.onClose}> Forgot Password </Button>
                   <Button variant="primary" type="submit"> Sign In </Button>
+
                 </Modal.Footer>
            </form>
         </div>
@@ -57,6 +62,9 @@ const SignIn = (props)=> {
   );
 }
 
+const mapStateToProps=(state)=>{
 
+  return {error: state.user.error }
+}
 
-export default connect( null, {verifyUser})(SignIn);
+export default connect( mapStateToProps, {verifyUser})(SignIn);

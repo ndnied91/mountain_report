@@ -8,8 +8,8 @@ const localStrategy = require("passport-local").Strategy;
 module.exports = function (passport) {
   passport.use(
     new localStrategy((username, password, done) => {
-      console.log('iin passport config')
-      console.log(username, password)
+      console.log('ii passport config')
+      // console.log(username, password)
       User.findOne({ name: username }, (err, user) => {
             // console.log('looking for match')
             // console.log('user name is ', username)
@@ -17,11 +17,12 @@ module.exports = function (passport) {
         if (!user) return done(null, false);
         bcrypt.compare(password, user.password, (err, result) => {
 
-          // console.log(`found user${user}, comparing passwords`)
+          console.log(`found user${user}, comparing passwords`)
           if (err) throw err;
           if (result === true) {
             return done(null, user);
           } else {
+
             return done(null, false);
           }
         });

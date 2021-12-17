@@ -7,7 +7,6 @@ import { Button, Modal } from 'react-bootstrap';
 import {moutainSelections, fetchSelectedMountains} from '../../actions'
 import {connect} from 'react-redux'
 
-import Cookies from 'js-cookie'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
  import './style.css'
@@ -22,8 +21,15 @@ const MoutainSelection = (props)=> {
     props.moutainSelections(e.target.value)
    }
 
+   const checkMnt=(value)=>{
+      if(props.selection.indexOf(value) > -1){
+        return true
+      }
+      else
+        return false
+   }
 
-  return (
+  return(
     <div>
       <Button variant="primary" className="test" onClick={handleShow}> + </Button>
       <span className="username">{props.username}</span>
@@ -36,18 +42,20 @@ const MoutainSelection = (props)=> {
              keyboard={false}
             >
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Mountain Selector</Modal.Title>
         </Modal.Header>
         <Modal.Body>
 
+        <div>{props.selection}</div>
+
         <div className="dpdn">
-            <input type="checkbox" value="Blue Mountain" onChange={e => handleChange(e)}/> Blue Mountain <br />
-            <input type="checkbox" value="Hunter Mountain" onChange={e => handleChange(e)}/> Hunter Mountain <br />
-            <input type="checkbox" value="Mount Snow" onChange={e => handleChange(e)}/> Mount Snow <br />
-            <input type="checkbox" value="Mountain Creek" onChange={e => handleChange(e)}/> Mountain Creek <br />
-            <input type="checkbox" value="Stowe" onChange={e => handleChange(e)}/> Stowe <br />
-            <input type="checkbox" value="Windham Mountain" onChange={e => handleChange(e)}/> Windham Mountain <br />
-            <input type="checkbox" value="Whiteface Mountain" onChange={e => handleChange(e)}/> Whiteface <br />
+            <input type="checkbox" checked ={ checkMnt('Blue Mountain')} value="Blue Mountain" onChange={e => handleChange(e)}/> Blue Mountain <br />
+            <input type="checkbox" checked ={ checkMnt('Hunter Mountain')} value="Hunter Mountain" onChange={e => handleChange(e)}/> Hunter Mountain <br />
+            <input type="checkbox" checked ={ checkMnt('Mount Snow')} value="Mount Snow" onChange={e => handleChange(e)}/> Mount Snow <br />
+            <input type="checkbox" checked ={ checkMnt('Mountain Creek')}value="Mountain Creek" onChange={e => handleChange(e)}/> Mountain Creek <br />
+            <input type="checkbox" checked ={ checkMnt('Stowe')} value="Stowe" onChange={e => handleChange(e)}/> Stowe <br />
+            <input type="checkbox" checked ={ checkMnt('Windham Mountain')} value="Windham Mountain" onChange={e => handleChange(e)}/> Windham Mountain <br />
+            <input type="checkbox" checked ={ checkMnt('Whiteface Mountain')} value="Whiteface Mountain" onChange={e => handleChange(e)}/> Whiteface <br />
         </div>
 
         </Modal.Body>
@@ -63,8 +71,7 @@ const MoutainSelection = (props)=> {
 }
 
 const mapStateToProps=(state)=>{
-  console.log(state.user.user)
-  return {selection: state.selection.selection , user: state.user.id  , username: state.user.user}
+  return {selection: state.selection.selection , user: state.user.id  , username: state.user.user }
 }
 
 export default connect( mapStateToProps, {moutainSelections , fetchSelectedMountains})(MoutainSelection);

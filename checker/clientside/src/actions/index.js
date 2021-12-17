@@ -22,7 +22,10 @@ export const  moutainSelections= (selection) =>{
 
 ///THIS IS UPDATED
 export const  moutainUpdate= (selection) =>{
-  return ({ type: 'ADD_LIST' , payload : selection })
+  console.log(selection)
+    return ({ type: 'ADD_LIST' , payload : selection })
+
+
 }
 
 
@@ -31,11 +34,17 @@ export const  moutainUpdate= (selection) =>{
 export const verifyUser = (values) => async dispatch => {
   let vals = {username: values.username.value, password: values.password.value}
     const res = await axios.post('/api/login', vals)
-    console.log(res)
+    console.log('res from verify User' ,res)
     dispatch({ type: 'CURRENT_USER' , payload: res.data})
-    console.log(res.data)
-    Cookies.set('user' , res.data.id)
-  //get response from databse
+
+    if(!res.data.error){
+        Cookies.set('user' , res.data.id)
+        return true
+    }
+    else{
+      return false
+    }
+
 }
 
 export const saveUser = (values, selection) => async dispatch => {

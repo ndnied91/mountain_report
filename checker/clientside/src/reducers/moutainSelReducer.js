@@ -27,8 +27,7 @@ export default function (state = initialState , action){
           return removeElements(vals.selection,vals.selection.length)
 
       case 'ADD_LIST':
-       return {  ...state,  selection: [...state.selection, ...action.payload] }
-          // return state
+           return {  ...state,  selection: [...state.selection, ...action.payload] }
 
          default:
           return state;
