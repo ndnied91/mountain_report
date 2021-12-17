@@ -47,6 +47,11 @@ mount(){
   return(
       <div>
         <h2>Mountains</h2>
+
+        <div>
+          {this.props.username !== null ? this.props.username : null}
+        </div>
+
           <div>
               <MoutainSelection/>
                 {renderLogin()}
@@ -60,7 +65,7 @@ mount(){
 //
 const mapStateToProps = (state) => {
   // console.log(state)
-  return { selection: state.user.selection , user: state.user.id}
+  return { selection: state.user.selection , user: state.user.id , username: state.user.name }
 }
 
 export default connect( mapStateToProps , {verifyUserViaCookie , fetchSelectedMountains , moutainSelections , moutainUpdate} )(Header)

@@ -52,13 +52,12 @@ module.exports = (app) => {
         const newUser = new User({
           name: req.body.username,
           password:  await bcrypt.hash(req.body.password, 10) ,
-          selection: ['Whiteface Mountain' , 'Blue Mountain'] //can be modified
+          selection: req.body.selection //can be modified
         });
           await newUser.save();
 
-          let user = {
-            name: newUser.name, selection: ['Mountain Creek' , 'Stowe'], id: newUser._id
-          }
+          let user = { name: newUser.name, selection: req.body.selection, id: newUser._id }
+          //we dont want to send back the whole user
 
           console.log(user)
 
@@ -66,6 +65,7 @@ module.exports = (app) => {
       }
     });
   });
+
 
 
   app.get("/user", (req, res) => {

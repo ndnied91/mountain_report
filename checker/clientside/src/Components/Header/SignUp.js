@@ -19,7 +19,7 @@ const SignIn = (props)=> {
 
   const handleSubmit = (event) => {
      event.preventDefault()
-     props.saveUser(event.target)
+     props.saveUser(event.target, props.selection)
       handleClose()
   }
 
@@ -55,5 +55,8 @@ const SignIn = (props)=> {
   );
 }
 
+const mapStateToProps = (state) =>{
+  return { selection: state.selection.selection }
+}
 
-export default connect( null, {saveUser})(SignIn);
+export default connect( mapStateToProps, {saveUser})(SignIn);

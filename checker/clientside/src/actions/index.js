@@ -38,8 +38,10 @@ export const verifyUser = (values) => async dispatch => {
   //get response from databse
 }
 
-export const saveUser = (values) => async dispatch => {
-  let vals = {username: values.username.value, password: values.password.value}
+export const saveUser = (values, selection) => async dispatch => {
+  console.log('saving user now..')
+  console.log(selection)
+  let vals = {username: values.username.value, password: values.password.value , selection: selection}
     const res = await axios.post('/api/user', vals)
     console.log('SAVE USER FIRING', res)
     dispatch({ type: 'CURRENT_USER' , payload: res.data})
