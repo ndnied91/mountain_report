@@ -25,9 +25,9 @@ const MoutainSelection = (props)=> {
 
   return (
     <div>
-      <Button variant="primary" onClick={handleShow}>
-        Mountain Selection
-      </Button>
+      <Button variant="primary" className="test" onClick={handleShow}> + </Button>
+      <span className="username">{props.username}</span>
+
 
       <Modal show={show}
              onHide={handleClose}
@@ -63,7 +63,8 @@ const MoutainSelection = (props)=> {
 }
 
 const mapStateToProps=(state)=>{
-  return {selection: state.selection.selection , user: state.user.id }
+  console.log(state.user.user)
+  return {selection: state.selection.selection , user: state.user.id  , username: state.user.user}
 }
 
 export default connect( mapStateToProps, {moutainSelections , fetchSelectedMountains})(MoutainSelection);

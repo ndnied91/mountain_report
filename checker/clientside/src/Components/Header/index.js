@@ -8,7 +8,7 @@ import MoutainSelection from './MoutainSelection'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
 
-
+import './style.css'
 class Header extends React.Component{
 
     async componentDidMount(){
@@ -26,7 +26,7 @@ class Header extends React.Component{
 
    renderUser(){
       if(this.props.username !== null){
-        return <div> {this.props.username}  </div>
+        return <div className="userName"> {this.props.username}  </div>
       }
       return null
     }
@@ -60,11 +60,11 @@ mount(){
       <div>
         <h1>Mountain Report</h1>
 
-          <div>
+          <div className="test">
               <MoutainSelection/>
-                {this.props.username === null ?renderLogin() : null }
+
                 {this.mount()}
-                {this.renderUser()}
+
           </div>
       </div>
     )

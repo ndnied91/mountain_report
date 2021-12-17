@@ -16,7 +16,6 @@ body{
   margin: 50px;
   height: 450px;
   max-width: 550px;
-
 }
 
 
@@ -29,4 +28,5 @@ body{
 .content{
   display: flex;
   flex-wrap: wrap;
+  justify-content:center;
 }

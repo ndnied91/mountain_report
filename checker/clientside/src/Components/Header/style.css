@@ -11,3 +11,16 @@
   overflow-y:
   scroll;
 }
+
+
+.userName{
+  background-color: red;
+  float: right;
+}
+
+
+.username{
+  font-size: 24px;
+  float: right;
+  vertical-align: sub;
+  }
