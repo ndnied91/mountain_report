@@ -56,7 +56,7 @@ module.exports = (app) => {
         });
           await newUser.save();
 
-          let user = { name: newUser.name, selection: req.body.selection, id: newUser._id }
+          let user = { user: newUser.name, selection: req.body.selection, id: newUser._id }
           //we dont want to send back the whole user
 
           console.log(user)
@@ -86,7 +86,7 @@ app.post('/api/user/cookie', (req, res) => {
       }
       else{
         console.log('user found via cookie')
-        res.send({ name: doc.name, selection: doc.selection , id: req.body.cookie });
+        res.send({ user: doc.name, selection: doc.selection , id: req.body.cookie });
         }
 
 
