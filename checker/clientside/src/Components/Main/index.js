@@ -37,7 +37,9 @@ const renderMnts = () => {
 
     return(
        <div className="">
+       {this.props.currentUser}
         {renderMnts()}
+
        </div>
      )
   }
@@ -45,7 +47,8 @@ const renderMnts = () => {
 
 
 const mapStateToProps=(state)=>{
-  return { mountains: state.mountains}
+  console.log(state.user.name)
+  return { mountains: state.mountains , currentUser: state.user.user}
 }
 
 export default connect(mapStateToProps , {fetchAllMountains})(Main)

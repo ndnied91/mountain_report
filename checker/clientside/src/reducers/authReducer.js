@@ -2,7 +2,7 @@
 import Cookies from 'js-cookie'
 
 const INITIAL_STATE={
-  name:'',
+  user: null,
   selection: [],
   id: Cookies.get('user')
 }

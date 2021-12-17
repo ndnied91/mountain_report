@@ -24,17 +24,29 @@ class Header extends React.Component{
     }
 
 
+   renderUser(){
+      if(this.props.username !==''){
+        return <div> {this.props.username}  </div>
+      }
+      return null
+    }
+
+
 mount(){
   if(this.props.selection !== null && this.props.selection.length > 1){
        this.props.moutainUpdate(this.props.selection)
        this.props.fetchSelectedMountains(this.props.selection, this.props.user)
 
        //just for updating the selection
+       if(this.props.null !==null){
+         this.renderUser()
+       }
   }
 }
 
-  render(){
 
+
+  render(){
       const renderLogin = () =>{
         return(
           <div>
@@ -48,13 +60,9 @@ mount(){
       <div>
         <h2>Mountains</h2>
 
-        <div>
-          {this.props.username !== null ? this.props.username : null}
-        </div>
-
           <div>
               <MoutainSelection/>
-                {renderLogin()}
+                {this.props.username === null ?renderLogin() : null }
                 {this.mount()}
           </div>
       </div>
@@ -64,13 +72,7 @@ mount(){
 
 //
 const mapStateToProps = (state) => {
-  // console.log(state)
-  return { selection: state.user.selection , user: state.user.id , username: state.user.name }
+  return { selection: state.user.selection , user: state.user.id , username: state.user.user }
 }
 
 export default connect( mapStateToProps , {verifyUserViaCookie , fetchSelectedMountains , moutainSelections , moutainUpdate} )(Header)
-
-
-// {Cookies.get('username')  === undefined ? renderLogin(): null }
-
-// {this.props.selection.user}
