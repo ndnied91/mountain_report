@@ -1,8 +1,6 @@
 
 .forecast-day{
-  /* background-color: green; */
   margin: 1vh;
-  /* padding: 1vh; */
   text-align: center;
 }
 
@@ -11,4 +9,8 @@
   display: flex;
   justify-content: center;
   width: auto;
+}
+
+.current-feelslike p{
+  margin: 0;
 }

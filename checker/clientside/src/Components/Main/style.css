@@ -14,9 +14,16 @@ body{
   border: 1px solid black;
   padding: 40px;
   margin: 50px;
-  height: 450px;
-  max-width: 550px;
+  height: 400px;
+  max-width: 100%;
+  /* max-width: 350px; */
 }
+
+.indmnt h1{
+  color: red;
+  text-align: center;
+}
+
 
 
 .low{

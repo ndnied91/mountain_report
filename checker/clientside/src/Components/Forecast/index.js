@@ -11,9 +11,9 @@ class Forecast extends React.Component{
 
     const renderCurrentTemp=()=>{
       return(
-            <div>
-              <p>Current Temp: {current.temperature}</p>
-              <p>Feels like: {current.feelslike}</p>
+            <div className="current-feelslike">
+              <p>Current Temp: {current.temperature}°</p>
+              <p>Feels like: {current.feelslike}°</p>
             </div>
           )
     }
