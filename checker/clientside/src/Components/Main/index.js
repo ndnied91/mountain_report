@@ -45,7 +45,6 @@ const renderMnts = () => {
 
 
 const mapStateToProps=(state)=>{
-  console.log(state)
   return { mountains: state.mountains}
 }
 

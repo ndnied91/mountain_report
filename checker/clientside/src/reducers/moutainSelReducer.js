@@ -20,12 +20,22 @@ const removeElements = (arr,n)=> {
 const initialState = { selection:[] }
 
 export default function (state = initialState , action){
+
+console.log(action.payload)
+
      switch (action.type){
        case 'ADD_ITEM':
          let vals = {  ...state,  selection: [...state.selection, action.payload] }
-         return removeElements(vals.selection,vals.selection.length)
+          return removeElements(vals.selection,vals.selection.length)
+
+      case 'ADD_LIST':
+       return {  ...state,  selection: [...state.selection, ...action.payload] }
+          // return state
 
          default:
           return state;
         }
+
+        //this updates the list based on the current list 
+
 }

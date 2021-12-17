@@ -13,11 +13,7 @@ const requireLogin = require('../Middlewares/requireLogin')
 
 module.exports = (app) => {
 
-// app.use(cookiesMiddleware())
-
-  //  ======routing ========
-
-
+ //VERIFICATION OF CURRENT USERS
   app.post("/api/login", (req, res, next) => {
     console.log(req.body)
     passport.authenticate("local", (err, user, info) => {
@@ -28,7 +24,16 @@ module.exports = (app) => {
       else {
         req.logIn(user, (err) => {
           if (err) throw err;
-          res.send(req.user.name);
+          console.log('VERIFYING USER....')
+          console.log('USER FOUND ....')
+          console.log('SENDING BACK' , req.user)
+
+          let user={
+                    user: req.user.name ,
+                    selection: req.user.selection, id: req.user._id
+                }
+
+          res.send(user);
         });
       }
     })(req, res, next);
@@ -46,10 +51,10 @@ module.exports = (app) => {
         const newUser = new User({
           name: req.body.username,
           password:  await bcrypt.hash(req.body.password, 10) ,
-          selection: null //can be modified
+          selection: ['Mountain Creek' , 'Stowe'] //can be modified
         });
           await newUser.save();
-          res.send(newUser.name);
+          res.send(newUser);
       }
     });
   });
@@ -65,17 +70,17 @@ module.exports = (app) => {
 
 app.post('/api/user/cookie', (req, res) => {
 
-    User.findOne({ name: req.body.cookie }, async (err, doc) => {
+    User.findOne({ _id: req.body.cookie }, async (err, doc) => {
       if (err) throw err;
 
       if(!doc){
         res.send({name: null, selection: null})
       }
       else{
-        // res.send(  {name: doc.name, selection: doc.selection.selection});
-        res.send({name: doc.name, selection: ['Mountain Creek' , 'Stowe'] });
-      }
-
+        console.log('user found via cookie')
+        res.send({ name: doc.name,
+                   selection: ['Mountain Creek' , 'Stowe'] });
+        }
       })
 });
 

@@ -50,6 +50,7 @@ require("./Server/services/passportConfig")(passport);
 
 
 const Resort = require('./Server/Models/Resort.js')
+let User = require('../Models/User.js')
 
 
 const PORT = process.env.port || 3000
@@ -69,20 +70,6 @@ require("./Server/Auth")(app);
 
 
 
-// const user = new User({
-//   name:"name",
-//   password: "testing",
-//   selection: null
-//
-// })
-// try{
-//    user.save()
-//
-// }catch(err){
-//   console.log(err)
-// }
-
-
 //
 // let zip = '07067'
 //   weather.find({search: zip, degreeType: 'F'}, function(err, result) {
@@ -97,7 +84,13 @@ require("./Server/Auth")(app);
 //
 
 
+async function updateMntSelection(id, mnts){
+  const filter = { _id: id };
+  const update = { selection: mnts };
+     await User.findOneAndUpdate(filter, update);
+}
 
+updateMntSelection(id, mnts)
 
 
 
@@ -111,8 +104,29 @@ app.get('/api/mountains', async (req,res)  =>{
 
 
 app.post('/api/mountains' , async (req,res)=>{
-  const mountains = await Resort.find({ 'name': { $in: req.body } });
-    res.send(mountains)
+
+  console.log('user selection coming form selection')
+
+
+  console.log(req.body)
+
+  updateMntSelection(id, mnts) //this will update the mnts
+  //take this and update the user
+
+  //find user , and update the mountain variable
+
+    if(!req.body){
+      console.log('null selection')
+      let mountains =  await Resort.find()
+        res.send(mountains)
+    }
+    else{
+      ///check if user is logged in / cookies set
+      console.log('getting specific mountains')
+      const mountains = await Resort.find({ 'name': { $in: req.body } });
+        res.send(mountains)
+    }
+
 })
 
 

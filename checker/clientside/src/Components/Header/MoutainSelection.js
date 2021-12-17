@@ -7,6 +7,8 @@ import { Button, Modal } from 'react-bootstrap';
 import {moutainSelections, fetchSelectedMountains} from '../../actions'
 import {connect} from 'react-redux'
 
+import Cookies from 'js-cookie'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
  import './style.css'
 
@@ -16,7 +18,9 @@ const MoutainSelection = (props)=> {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleChange=(e)=> { props.moutainSelections(e.target.value) }
+  const handleChange=(e)=> {
+    props.moutainSelections(e.target.value)
+   }
 
 
   return (
@@ -49,7 +53,7 @@ const MoutainSelection = (props)=> {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}> Close </Button>
-          <Button variant="primary" onClick={()=>props.fetchSelectedMountains(props.selection).then(()=>handleClose())}>
+          <Button variant="primary" onClick={()=>props.fetchSelectedMountains(props.selection, Cookies.get('user') ).then(()=>handleClose())}>
             Save Changes
           </Button>
         </Modal.Footer>
@@ -59,7 +63,7 @@ const MoutainSelection = (props)=> {
 }
 
 const mapStateToProps=(state)=>{
-  return {selection: state.selection.selection }
+  return {selection: state.selection.selection , userSelection: state.user.selection[0] }
 }
 
 export default connect( mapStateToProps, {moutainSelections , fetchSelectedMountains})(MoutainSelection);

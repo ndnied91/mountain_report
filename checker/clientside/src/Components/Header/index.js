@@ -1,7 +1,7 @@
 
 import React from "react";
 import {connect} from 'react-redux'
-import { verifyUserViaCookie , fetchSelectedMountains } from '../../actions'
+import { verifyUserViaCookie , fetchSelectedMountains , moutainSelections  , moutainUpdate } from '../../actions'
 
 import Cookies from 'js-cookie'
 import MoutainSelection from './MoutainSelection'
@@ -11,16 +11,30 @@ import SignUp from './SignUp'
 
 class Header extends React.Component{
 
-    componentDidMount(){
-        this.props.verifyUserViaCookie(Cookies.get('username'))
-        //if cookie is set, get the specific moutains
+    async componentDidMount(){
+      if(Cookies.get('user')){
+        console.log('cookie found', Cookies.get('user') )
+        await this.props.verifyUserViaCookie(Cookies.get('user'))
+
+      }
+      else{
+        console.log('cookie not set')
+      }
+
     }
 
 
 
-  render(){
 
-    this.props.fetchSelectedMountains(this.props.userSelect) //CHANGE FROM USER PREF
+mount(){
+  if(this.props.userSelect !== null && this.props.userSelect.length > 1){
+       this.props.moutainUpdate(this.props.userSelect)
+
+       this.props.fetchSelectedMountains(this.props.userSelect)
+  }
+}
+
+  render(){
 
       const renderLogin = () =>{
         return(
@@ -34,17 +48,12 @@ class Header extends React.Component{
   return(
       <div>
         <h2>Mountains</h2>
-
-
-        <div>
-
-            <MoutainSelection/>
-
-              {renderLogin()}
-
-
-        </div>
-
+          <div>
+              <MoutainSelection/>
+              {this.props.userSelect.name}
+                {renderLogin()}
+                {this.mount()}
+          </div>
       </div>
     )
   }
@@ -52,11 +61,10 @@ class Header extends React.Component{
 
 //
 const mapStateToProps = (state) => {
-  console.log(state.user.selection)
   return { userSelect: state.user.selection }
 }
 
-export default connect( mapStateToProps , {verifyUserViaCookie , fetchSelectedMountains} )(Header)
+export default connect( mapStateToProps , {verifyUserViaCookie , fetchSelectedMountains , moutainSelections , moutainUpdate} )(Header)
 
 
 // {Cookies.get('username')  === undefined ? renderLogin(): null }
