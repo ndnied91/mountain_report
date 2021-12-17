@@ -1,0 +1,14 @@
+
+.forecast-day{
+  /* background-color: green; */
+  margin: 1vh;
+  /* padding: 1vh; */
+  text-align: center;
+}
+
+
+.flex{
+  display: flex;
+  justify-content: center;
+  width: auto;
+}

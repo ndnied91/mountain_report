@@ -25,7 +25,7 @@ class Header extends React.Component{
 
 
    renderUser(){
-      if(this.props.username !==''){
+      if(this.props.username !== null){
         return <div> {this.props.username}  </div>
       }
       return null
@@ -58,12 +58,13 @@ mount(){
 
   return(
       <div>
-        <h2>Mountains</h2>
+        <h1>Mountain Report</h1>
 
           <div>
               <MoutainSelection/>
                 {this.props.username === null ?renderLogin() : null }
                 {this.mount()}
+                {this.renderUser()}
           </div>
       </div>
     )

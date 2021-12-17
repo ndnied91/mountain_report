@@ -1,6 +1,6 @@
 import React from 'react'
 
-
+import './style.css'
 
 class Forecast extends React.Component{
   render(){
@@ -23,13 +23,17 @@ class Forecast extends React.Component{
 
           let url = `http://blob.weather.microsoft.com/static/weather4/en-us/law/${item.skycodeday}.gif`
           return(
-            <div key={i}>
-              Low:{item.low}
-              High:{item.high}
-              {item.shortday}
-              Date:{item.date.replace('2021-', '').replace('2022-', '').replace('-', '/')}
+            <div key={i} className="forecast-day">
+            <div>
+              {item.shortday} {item.date.replace('2021-', '').replace('2022-', '').replace('-', '/')}
+              </div>
+                <img src={url} alt={'Weather'}/>
+                <div>
+                  <span className="high"> {item.high}° </span>
+                  <span className="low">{item.low}° </span>
 
-            <img src={url} alt={'Weather'}/>
+                </div>
+
              </div>
            )
         });
@@ -41,7 +45,9 @@ class Forecast extends React.Component{
     return(
       <div>
           {renderCurrentTemp()}
-          {renderForecast()}
+          <div className="flex">
+            {renderForecast()}
+          </div>
       </div>
       )
   }
