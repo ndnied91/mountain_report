@@ -50,7 +50,7 @@ require("./Server/services/passportConfig")(passport);
 
 
 const Resort = require('./Server/Models/Resort.js')
-let User = require('../Models/User.js')
+let User = require('./Server/Models/User.js')
 
 
 const PORT = process.env.port || 3000
@@ -90,11 +90,6 @@ async function updateMntSelection(id, mnts){
      await User.findOneAndUpdate(filter, update);
 }
 
-updateMntSelection(id, mnts)
-
-
-
-
 
 
 app.get('/api/mountains', async (req,res)  =>{
@@ -108,24 +103,23 @@ app.post('/api/mountains' , async (req,res)=>{
   console.log('user selection coming form selection')
 
 
-  console.log(req.body)
-
-  updateMntSelection(id, mnts) //this will update the mnts
+  // updateMntSelection(req.body.id, req.body.mnts) //this will update the mnts
   //take this and update the user
 
   //find user , and update the mountain variable
 
-    if(!req.body){
-      console.log('null selection')
-      let mountains =  await Resort.find()
-        res.send(mountains)
-    }
-    else{
-      ///check if user is logged in / cookies set
-      console.log('getting specific mountains')
-      const mountains = await Resort.find({ 'name': { $in: req.body } });
-        res.send(mountains)
-    }
+
+  if(req.body.id === null){
+      res.send(await Resort.find() )
+  }
+  else{
+    console.log('updating user selection')
+    await updateMntSelection(req.body.id, req.body.values)
+
+    const mountains = await Resort.find({ 'name': { $in: req.body.values } });
+    res.send(mountains)
+  }
+
 
 })
 

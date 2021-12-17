@@ -21,8 +21,6 @@ const initialState = { selection:[] }
 
 export default function (state = initialState , action){
 
-console.log(action.payload)
-
      switch (action.type){
        case 'ADD_ITEM':
          let vals = {  ...state,  selection: [...state.selection, action.payload] }
@@ -36,6 +34,6 @@ console.log(action.payload)
           return state;
         }
 
-        //this updates the list based on the current list 
+        //this updates the list based on the current list
 
 }

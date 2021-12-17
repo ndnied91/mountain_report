@@ -53,7 +53,7 @@ const MoutainSelection = (props)=> {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}> Close </Button>
-          <Button variant="primary" onClick={()=>props.fetchSelectedMountains(props.selection, Cookies.get('user') ).then(()=>handleClose())}>
+          <Button variant="primary" onClick={( )=>props.fetchSelectedMountains(props.selection, props.user).then(()=>handleClose())}>
             Save Changes
           </Button>
         </Modal.Footer>
@@ -63,7 +63,7 @@ const MoutainSelection = (props)=> {
 }
 
 const mapStateToProps=(state)=>{
-  return {selection: state.selection.selection , userSelection: state.user.selection[0] }
+  return {selection: state.selection.selection , user: state.user.id }
 }
 
 export default connect( mapStateToProps, {moutainSelections , fetchSelectedMountains})(MoutainSelection);

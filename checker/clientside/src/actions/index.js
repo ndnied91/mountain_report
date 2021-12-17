@@ -8,9 +8,8 @@ export const fetchAllMountains = () => async dispatch => {
 
 
 
-export const fetchSelectedMountains = (values, id) => async dispatch => {
-  console.log(values , id)
-  const res = await axios.post('/api/mountains', values)
+export const fetchSelectedMountains = (values, id ) => async dispatch => {
+  const res = await axios.post('/api/mountains', ({values, id}))
   dispatch({ type: 'FETCH_MNTS' , payload: res.data})
 }
 
@@ -23,7 +22,6 @@ export const  moutainSelections= (selection) =>{
 
 ///THIS IS UPDATED
 export const  moutainUpdate= (selection) =>{
-  console.log(selection)
   return ({ type: 'ADD_LIST' , payload : selection })
 }
 
@@ -45,7 +43,7 @@ export const saveUser = (values) => async dispatch => {
     const res = await axios.post('/api/user', vals)
     console.log('SAVE USER FIRING', res)
     dispatch({ type: 'CURRENT_USER' , payload: res.data})
-    Cookies.set('user' , res.data.user.id)
+    Cookies.set('user' , res.data.id)
 }
 
 

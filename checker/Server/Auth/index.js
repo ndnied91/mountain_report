@@ -26,12 +26,13 @@ module.exports = (app) => {
           if (err) throw err;
           console.log('VERIFYING USER....')
           console.log('USER FOUND ....')
-          console.log('SENDING BACK' , req.user)
 
           let user={
-                    user: req.user.name ,
-                    selection: req.user.selection, id: req.user._id
+                    user: req.user.name, selection: req.user.selection, id: req.user._id
                 }
+
+                console.log('sending back' , user)
+                console.log(user)
 
           res.send(user);
         });
@@ -51,10 +52,17 @@ module.exports = (app) => {
         const newUser = new User({
           name: req.body.username,
           password:  await bcrypt.hash(req.body.password, 10) ,
-          selection: ['Mountain Creek' , 'Stowe'] //can be modified
+          selection: ['Whiteface Mountain' , 'Blue Mountain'] //can be modified
         });
           await newUser.save();
-          res.send(newUser);
+
+          let user = {
+            name: newUser.name, selection: ['Mountain Creek' , 'Stowe'], id: newUser._id
+          }
+
+          console.log(user)
+
+          res.send(user);
       }
     });
   });
@@ -78,9 +86,11 @@ app.post('/api/user/cookie', (req, res) => {
       }
       else{
         console.log('user found via cookie')
-        res.send({ name: doc.name,
-                   selection: ['Mountain Creek' , 'Stowe'] });
+        res.send({ name: doc.name, selection: doc.selection , id: req.body.cookie });
         }
+
+
+
       })
 });
 

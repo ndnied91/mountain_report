@@ -1,11 +1,11 @@
 
+import Cookies from 'js-cookie'
 
 const INITIAL_STATE={
   name:'',
   selection: [],
+  id: Cookies.get('user')
 }
-
-
 
 export default function(state = INITIAL_STATE , action){
   switch(action.type){
