@@ -1,12 +1,11 @@
-//
+
 import React, { useState } from "react";
-
-
-
 import { Button, Modal } from 'react-bootstrap';
-import {moutainSelections, fetchSelectedMountains} from '../../actions'
+import {moutainSelections, fetchSelectedMountains , fetchAllMountains , verifyUserViaCookie} from '../../actions'
 import {connect} from 'react-redux'
 
+
+import Cookies from 'js-cookie'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
  import './style.css'
@@ -29,10 +28,22 @@ const MoutainSelection = (props)=> {
         return false
    }
 
+   // const signOut= ()=>{
+     // console.log('signing out now')
+      // Cookies.remove('user')
+      // props.fetchAllMountains() //gets all moutains
+      // props.verifyUserViaCookie(null)
+      //make a call to get the moutains and render component
+   // }
+
+
   return(
     <div>
       <Button variant="primary" className="test" onClick={handleShow}> + </Button>
+
       <span className="username">{props.username}</span>
+
+
 
 
       <Modal show={show}
@@ -74,4 +85,7 @@ const mapStateToProps=(state)=>{
   return {selection: state.selection.selection , user: state.user.id  , username: state.user.user }
 }
 
-export default connect( mapStateToProps, {moutainSelections , fetchSelectedMountains})(MoutainSelection);
+export default connect( mapStateToProps, {moutainSelections , fetchSelectedMountains , fetchAllMountains , verifyUserViaCookie})(MoutainSelection);
+
+
+// <button className="btnn" onClick={signOut}> Sign Out</button>

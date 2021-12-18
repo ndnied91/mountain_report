@@ -23,15 +23,6 @@ class Header extends React.Component{
 
     }
 
-
-   renderUser(){
-      if(this.props.username !== null){
-        return <div className="userName"> {this.props.username}  </div>
-      }
-      return null
-    }
-
-
     mount(){
         if(this.props.selection.length > 1){
              this.props.moutainUpdate(this.props.selection)
@@ -58,9 +49,9 @@ class Header extends React.Component{
 
           <div className="test">
               <MoutainSelection/>
-              
+
               {this.props.error === null ? this.mount() : null}
-              {this.props.username === null  ?  renderLogin() :null }
+              {this.props.username === null ? renderLogin(): null}
 
           </div>
       </div>
@@ -70,7 +61,7 @@ class Header extends React.Component{
 
 //
 const mapStateToProps = (state) => {
-  return { selection: state.user.selection , user: state.user.id , username: state.user.user  , error: state.user.error }
+  return { selection: state.user.selection , user: state.user.id   , error: state.user.error , username: state.user.user }
 }
 
 export default connect( mapStateToProps , {verifyUserViaCookie , fetchSelectedMountains , moutainSelections , moutainUpdate} )(Header)
