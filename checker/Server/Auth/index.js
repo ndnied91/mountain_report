@@ -84,7 +84,8 @@ app.post('/api/user/cookie', (req, res) => {
       if (err) throw err;
 
       if(!doc){
-        res.send({name: null, selection: null})
+        // res.send({name: null, selection: null})
+        res.send({ user:null, selection: [] , id:null , error: null  });
       }
       else{
         console.log('user found via cookie')

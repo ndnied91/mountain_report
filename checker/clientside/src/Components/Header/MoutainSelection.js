@@ -28,23 +28,11 @@ const MoutainSelection = (props)=> {
         return false
    }
 
-   // const signOut= ()=>{
-     // console.log('signing out now')
-      // Cookies.remove('user')
-      // props.fetchAllMountains() //gets all moutains
-      // props.verifyUserViaCookie(null)
-      //make a call to get the moutains and render component
-   // }
 
 
   return(
     <div>
       <Button variant="primary" className="test" onClick={handleShow}> + </Button>
-
-      <span className="username">{props.username}</span>
-
-
-
 
       <Modal show={show}
              onHide={handleClose}
@@ -86,6 +74,3 @@ const mapStateToProps=(state)=>{
 }
 
 export default connect( mapStateToProps, {moutainSelections , fetchSelectedMountains , fetchAllMountains , verifyUserViaCookie})(MoutainSelection);
-
-
-// <button className="btnn" onClick={signOut}> Sign Out</button>

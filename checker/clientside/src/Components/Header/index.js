@@ -1,7 +1,7 @@
 
 import React from "react";
 import {connect} from 'react-redux'
-import { verifyUserViaCookie , fetchSelectedMountains , moutainSelections  , moutainUpdate } from '../../actions'
+import { verifyUserViaCookie , fetchSelectedMountains , moutainSelections  , moutainUpdate , fetchAllMountains } from '../../actions'
 
 import Cookies from 'js-cookie'
 import MoutainSelection from './MoutainSelection'
@@ -33,6 +33,23 @@ class Header extends React.Component{
 
 
   render(){
+
+    const signOut= ()=>{
+       Cookies.remove('user')
+       this.props.fetchAllMountains() //gets all moutains
+       this.props.verifyUserViaCookie(null) //resets all values
+
+       // make a call to get the moutains and render component
+    }
+
+    const renderSignOutBtn = () =>{
+      console.log(this.props.username)
+      return(
+          <button className="btnn" onClick={signOut}> Sign Out </button>
+      )
+    }
+
+
       const renderLogin = () =>{
         return(
           <div>
@@ -48,6 +65,10 @@ class Header extends React.Component{
         <h1>Mountain Report</h1>
 
           <div className="test">
+
+            <span className="username">{this.props.username}</span>
+              { this.props.username !== null ?  <button className="btnn" onClick={signOut}> Sign Out </button> : null }
+
               <MoutainSelection/>
 
               {this.props.error === null ? this.mount() : null}
@@ -64,6 +85,6 @@ const mapStateToProps = (state) => {
   return { selection: state.user.selection , user: state.user.id   , error: state.user.error , username: state.user.user }
 }
 
-export default connect( mapStateToProps , {verifyUserViaCookie , fetchSelectedMountains , moutainSelections , moutainUpdate} )(Header)
+export default connect( mapStateToProps , {verifyUserViaCookie , fetchSelectedMountains , moutainSelections , moutainUpdate  , fetchAllMountains} )(Header)
 
 // {this.mount()}
