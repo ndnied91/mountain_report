@@ -11,9 +11,9 @@ body{
 }
 
 .indmnt{
-  border: 1px solid black;
-  padding: 40px;
-  margin: 50px;
+  /* border: 1px solid black; */
+  /* padding: 40px; */
+  margin: 10px;
   height: 400px;
   max-width: 100%;
   /* max-width: 350px; */
@@ -36,4 +36,27 @@ body{
   display: flex;
   flex-wrap: wrap;
   justify-content:center;
+}
+
+.tf-info{
+  display: flex;
+  justify-content: center;
+}
+
+
+.card-header{
+  font-size: 30px;
+}
+
+.bold{
+  font-weight:bold;
+}
+
+.trails{
+  padding-right:10px;
+
+}
+
+.lifts{
+  padding-left: 10px;
 }

@@ -14,3 +14,28 @@
 .current-feelslike p{
   margin: 0;
 }
+
+
+
+.current-feelslike{
+  display: flex;
+  justify-content: center;
+}
+
+
+.card-header{
+  font-size: 30px;
+}
+
+.bold{
+  font-weight:bold;
+}
+
+.current-temp{
+  padding-right:10px;
+
+}
+
+.feelslike-temp{
+  padding-left: 10px;
+}
