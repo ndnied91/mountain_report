@@ -1,0 +1,74 @@
+
+/* responsible for rending forecast */
+.current-feelslike{
+  display: flex;
+  justify-content: center;
+  align-self: center;
+
+  transform: scale(140%) translateX(-40px);
+
+}
+
+
+.card-header{
+  font-size: 30px;
+}
+
+.bold{
+  font-weight:bold;
+}
+
+.current-temp{
+  font-size: 30px;
+  vertical-align: sub;
+
+}
+
+.feelslike-temp{
+  padding-left: 10px;
+}
+
+
+.mntsConds{
+/* background-color: red; */
+display: flex;
+flex-direction: row;
+width: 100%;
+}
+
+
+.trail_info{
+  font-size: 13px;
+  margin-top:60%;
+  margin-right: 27%;
+}
+
+
+
+.lift_info{
+  font-size: 13px;
+  margin-top:60%;
+  margin-right: 75%;
+
+}
+
+
+/* .label{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  font-weight:bold;
+}
+
+
+.label_k{
+  display: flex;
+  text-align: center;
+  display: flex;
+  width: 100%;
+  position:fixed;
+  font-weight:bold;
+  padding-right: -40px;
+
+} */

@@ -4,9 +4,6 @@ import { Button, Modal } from 'react-bootstrap';
 import {moutainSelections, fetchSelectedMountains , fetchAllMountains , verifyUserViaCookie} from '../../actions'
 import {connect} from 'react-redux'
 
-
-import Cookies from 'js-cookie'
-
 import 'bootstrap/dist/css/bootstrap.min.css';
  import './style.css'
 

@@ -11,15 +11,11 @@
   width: auto;
 }
 
-.current-feelslike p{
-  margin: 0;
-}
 
-
-
+/*
 .current-feelslike{
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 
@@ -32,10 +28,11 @@
 }
 
 .current-temp{
-  padding-right:10px;
+  font-size: 30px;
+  vertical-align: sub;
 
 }
 
 .feelslike-temp{
   padding-left: 10px;
-}
+} */
