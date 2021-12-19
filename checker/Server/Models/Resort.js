@@ -9,6 +9,7 @@ const resortSchema = new Schema({
   link: String,
   report: String,
   weather: Array,
+  tickets: String,
   timestamp: String,
 })
 

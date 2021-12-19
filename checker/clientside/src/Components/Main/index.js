@@ -21,9 +21,7 @@ class Main extends React.Component{
 
 const getPercentage = (trails)=>{
   let arr = trails.split('/')
-  console.log(arr)
   if(!(arr[0] === '0')){
-    console.log(arr[0] / arr[1])
       return (arr[0] / arr[1]) * 100
   }
   return 0
@@ -31,10 +29,10 @@ const getPercentage = (trails)=>{
 
 
 const renderMnts = () => {
-  return this.props.mountains.map(( {name, trails, lifts, terrain , link, weather} , index )=>{
-    
+  return this.props.mountains.map(( {name, trails, lifts, terrain , link, weather ,report , tickets} , index )=>{
+
     return(
-      <div key={index}className="">
+      <div key={index} >
 
         <div className="card">
           <h5 className="card-header title">{name}</h5>
@@ -48,7 +46,12 @@ const renderMnts = () => {
                 {terrain > 1 ? <div> Terrain: {terrain} </div> : null}
             </div>
 
-                <a href={link} class="btn btn-primary" target="_blank"> Mountain Report</a>
+              <div className="links">
+                  <a href={link} className="btn btn-primary" target="_blank"> Visit website</a>
+                  <a href={tickets} className="btn btn-danger" target="_blank"> Buy Tickets</a>
+                  <a href={report} className="btn btn-success" target="_blank"> Mountain Report</a>
+            </div>
+
           </div>
         </div>
 
@@ -77,41 +80,3 @@ const mapStateToProps=(state)=>{
 }
 
 export default connect(mapStateToProps , {fetchAllMountains})(Main)
-
-
-
-
-//
-// <div class="card">
-//   <h5 class="card-header">Featured</h5>
-//   <div class="card-body">
-//     <h5 class="card-title">Special title treatment</h5>
-//     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-//     <a href="#" class="btn btn-primary">Go somewhere</a>
-//   </div>
-// </div>
-
-
-
-
-
-
-
-// <div key={index} className="indmnt">
-//   <h1>{name}</h1>
-//
-//   <div className="tf-info">
-//     <div className="trails"> Trails: {trails} </div>
-//     <div className="lifts"> Lifts: {lifts} </div>
-//   </div>
-//
-//     {terrain > 1 ? <div> Terrain: {terrain} </div> : null}
-//
-//     {weather !== null ? <Forecast weather = {weather}/>: null}
-//
-//   <a href={link} target="_blank"> Mountain Report</a>
-//
-//  </div>
-
-
-// {weather !== null ? <Forecast weather = {weather}/>: null}

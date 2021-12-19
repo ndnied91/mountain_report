@@ -18,8 +18,7 @@ var weather = require('weather-js');
 
 const Report = require('./Models/Resort.js')
 
-
-
+// https://weatherjs.com
 
 // let zip = '07067'
 //   weather.find({search: zip, degreeType: 'F'}, function(err, result) {
@@ -28,7 +27,9 @@ const Report = require('./Models/Resort.js')
 //     let forecast = result[0].forecast
 //     let current =result[0].current
 //
+//     console.log(forecast)
 //   });
+
 
 
 
@@ -58,6 +59,7 @@ const updateBlueMnt = async()=>{
              lifts: lifts[3],
              link : 'https://www.skibluemt.com/',
              report: 'https://www.skibluemt.com',
+             tickets: 'https://www.skibluemt.com/winter-sports/skiing-snowboarding/purchase-lift-tickets/',
              timestamp : moment.tz(Date.now(), "America/New_York").format()
             };
               await Report.findOneAndUpdate(filter, update);
@@ -111,6 +113,7 @@ const updateMntCreek = () =>{
               trails: trails[1], lifts: trails[3],
               link : 'https://www.mountaincreek.com/mountainreport',
               report: 'https://www.mountaincreek.com/5dayforecast',
+              tickets: "https://mountaincreek.snowcloud.store/menu/92bc1c3f-a4cf-4e29-80b7-40f80840494f",
               timestamp : moment.tz(Date.now(), "America/New_York").format()
              };
                const res = await Report.findOneAndUpdate(filter, update);
@@ -244,6 +247,8 @@ const updateWhiteface = () => {
            trails: trails[1], lifts: lifts[1],
            link : 'https://whiteface.com/mountain/',
            report: "https://whiteface.com/mountain/conditions/",
+           tickets: 'https://whiteface.com/tickets-passes/',
+           ticekts: 'https://shop.windhammountain.com/s/lift-passes/c/lift-ticket',
            timestamp : moment.tz(Date.now(), "America/New_York").format()
           };
              await Report.findOneAndUpdate(filter, update);
@@ -264,7 +269,8 @@ const updateWhiteface = () => {
                   weather.find({search: '12997', degreeType: 'F'}, async function(err, result) {
                    if(err) console.log(err);
                    if(result){
-
+                     console.log('result is..')
+                     console.log(result[0].forecast)
                      let current = {
                        temperature : result[0].current.temperature, skytext : result[0].current.skytext, date : result[0].current.date,
                        feelslike : result[0].current.feelslike, shortday : result[0].current.shortday, imageUrl : result[0].current.imageUrl
@@ -300,6 +306,7 @@ const updateMntSnow = () =>{
             lifts: lifts[0],
             terrain: lifts[2],
             link: "https://www.mountsnow.com/the-mountain/mountain-conditions/lift-and-terrain-status.aspx",
+            ticekts: 'https://www.mountsnow.com/plan-your-trip/lift-access/tickets.aspx',
             report: "https://www.mountsnow.com/the-mountain/mountain-conditions/snow-and-weather-report.aspx",
             timestamp : moment.tz(Date.now(), "America/New_York").format()
            };
@@ -356,6 +363,7 @@ const updateHunter = () =>{
            lifts: lifts[0],
            terrain: lifts[2],
            link: "https://www.huntermtn.com/the-mountain/mountain-conditions/lift-and-terrain-status.aspx",
+           tickets: "https://www.huntermtn.com/plan-your-trip/lift-access/tickets.aspx",
            report: "https://www.huntermtn.com/the-mountain/mountain-conditions/snow-and-weather-report.aspx",
            timestamp : moment.tz(Date.now(), "America/New_York").format()
           };
@@ -410,6 +418,7 @@ const updateStowe = () =>{
             lifts: lifts[4],
             terrain: lifts[0],
             link: "https://www.stowe.com/the-mountain/mountain-conditions/terrain-and-lift-status.aspx",
+            ticekts: "https://www.stowe.com/plan-your-trip/lift-access/tickets.aspx",
             report: "https://www.stowe.com/the-mountain/mountain-conditions/snow-and-weather-report.aspx",
             timestamp : moment.tz(Date.now(), "America/New_York").format()
            };
@@ -448,6 +457,7 @@ const updateStowe = () =>{
 
 
 module.exports = {updateBlueMnt , updateMntCreek , updateWindham , updateWhiteface , updateMntSnow , updateHunter, updateStowe}
+
 
 
 

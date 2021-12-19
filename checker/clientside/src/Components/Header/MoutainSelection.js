@@ -29,7 +29,7 @@ const MoutainSelection = (props)=> {
 
   return(
     <div>
-      <Button variant="primary" className="test" onClick={handleShow}> + </Button>
+      <Button variant="primary" className="btn-lg" onClick={handleShow}> Mountain Selector </Button>
 
       <Modal show={show}
              onHide={handleClose}
@@ -57,7 +57,7 @@ const MoutainSelection = (props)=> {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}> Close </Button>
-          <Button variant="primary" onClick={( )=>props.fetchSelectedMountains(props.selection, props.user).then(()=>handleClose())}>
+          <Button variant="primary" onClick={()=>props.fetchSelectedMountains(props.selection, props.user).then(()=>handleClose())}>
             Save Changes
           </Button>
         </Modal.Footer>

@@ -10,6 +10,20 @@ import SignUp from './SignUp'
 
 import './style.css'
 class Header extends React.Component{
+  constructor(props){
+    super(props)
+      this.state = { searchTerm: '' };
+      this.onInputchange = this.onInputchange.bind(this);
+  }
+
+  onInputchange(event) {
+   this.setState({ searchTerm: event.target.value });
+   console.log(this.state)
+
+   //we can get the correct mountains here
+ }
+
+
 
     async componentDidMount(){
       if(Cookies.get('user')){
@@ -18,7 +32,7 @@ class Header extends React.Component{
 
       }
       else{
-        console.log('cookie not set')
+        // console.log('cookie not set')
       }
 
     }
@@ -34,6 +48,9 @@ class Header extends React.Component{
 
   render(){
 
+
+    // console.log(this.props.mountains)
+
     const signOut= ()=>{
        Cookies.remove('user')
        this.props.fetchAllMountains() //gets all moutains
@@ -42,38 +59,43 @@ class Header extends React.Component{
        // make a call to get the moutains and render component
     }
 
-    const renderSignOutBtn = () =>{
-      console.log(this.props.username)
-      return(
-          <button className="btnn" onClick={signOut}> Sign Out </button>
-      )
-    }
-
 
       const renderLogin = () =>{
         return(
           <div>
-            <SignIn title={'Sign In'}/>
-            <SignUp title={'Sign Up'}/>
+              <div className="box">
+                  <div className="left"> <MoutainSelection/> </div>
+                  <div className="push"><SignUp title={'Sign Up'}/></div>
+                  <div className="push"><SignIn title={'Sign In'}/></div>
+              </div>
           </div>
+
+
         )
       }
 
 
+
   return(
+
+
       <div>
-        <h1>Mountain Report</h1>
-
+        <h1 className="mainTitle">Mountain Report</h1>
           <div className="test">
-
-            <span className="username">{this.props.username}</span>
-              { this.props.username !== null ?  <button className="btnn" onClick={signOut}> Sign Out </button> : null }
-
-              <MoutainSelection/>
-
+              {this.props.username !== null ?  <button className="btnn btn btn-outline-primary btn-lg" onClick={signOut}> {this.props.username} </button> : null }
               {this.props.error === null ? this.mount() : null}
-              {this.props.username === null ? renderLogin(): null}
 
+                <div className="break">
+                {this.props.username !== null ? <div className="left"> <MoutainSelection/> </div> : null}
+                {this.props.username === null ? renderLogin(): null}
+
+                  <div className="inputSearch">
+                    <input type="search" className="searchBar form-control rounded"
+                        placeholder="Search Mountains" aria-label="Search"
+                        aria-describedby="search-addon"
+                        onChange={this.onInputchange}  />
+                 </div>
+              </div>
           </div>
       </div>
     )
@@ -82,9 +104,16 @@ class Header extends React.Component{
 
 //
 const mapStateToProps = (state) => {
-  return { selection: state.user.selection , user: state.user.id   , error: state.user.error , username: state.user.user }
+  console.log(state)
+  return { selection: state.user.selection ,
+            user: state.user.id   ,
+            error: state.user.error ,
+            username: state.user.user
+ }
 }
 
 export default connect( mapStateToProps , {verifyUserViaCookie , fetchSelectedMountains , moutainSelections , moutainUpdate  , fetchAllMountains} )(Header)
 
-// {this.mount()}
+
+
+// onChange={this.onInputchange}

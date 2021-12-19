@@ -16,9 +16,30 @@ console.log(`Current time: ${new Date()}`);
 
 
 
-schedule.scheduleJob('31 * * * *', async function(){
+const update= async() =>{
+  console.log('upating all')
+  await mnts.updateBlueMnt()
+  await mnts.updateWhiteface()
+  await mnts.updateWindham()
+  await mnts.updateMntSnow()
+  await mnts.updateHunter()
+  await mnts.updateStowe()
+  await mnts.updateMntCreek()
+}
+//
+update()
+
+    // await mnts.updateBlueMnt()
+
+
+schedule.scheduleJob('55 * * * *', async function(){
     await mnts.updateWhiteface()
     await mnts.updateBlueMnt()
+    await mnts.updateWindham()
+    await mnts.updateMntSnow()
+    await mnts.updateHunter()
+    await mnts.updateStowe()
+    await mnts.updateMntCreek()
     console.log('updating whiteface and blue mountain')
  });
 
@@ -37,10 +58,4 @@ schedule.scheduleJob('31 * * * *', async function(){
       console.log('updating hunter/ stowe / creek')
    });
 
-   // 
-   // const update= async() =>{
-   //   console.log('upating whiteface')
-   //  await mnts.updateWhiteface()
-   // }
    //
-   // update()

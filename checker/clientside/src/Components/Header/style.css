@@ -1,3 +1,8 @@
+.mainTitle{
+  text-align: center;
+}
+
+
 .mainheader{
   text-align: center;
   font-size: 20px;
@@ -22,12 +27,69 @@
 .username{
   font-size: 24px;
   float: right;
-  vertical-align: sub;
+  vertical-align:baseline;
   padding-right: 5px;
+  padding-top: 5px;
   }
 
 
 .btnn{
   float: right;
   vertical-align: sub;
+}
+
+
+.left{
+  float: left;
+  padding-left: 10px;
+}
+
+.box {
+  padding: 20px;
+  margin-bottom: 10px;
+}
+.push {
+  float: right;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.inputSearch{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-top: 40px;
+
+}
+
+.searchBar{
+  text-align: center;
+  border-radius: 10px;
+  position:relative;
+  height: 45px;
+  width: 60%;
+
+
+
+
+}
+.break{
+  padding-bottom: 5%;
+}
+
+
+
+.extended{
+  width: 100%;
+}
+
+
+
+.links a{
+  width: 30%;
+}
+
+.links{
+  display: flex;
+  justify-content:space-around;
 }

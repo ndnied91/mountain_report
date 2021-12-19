@@ -25,7 +25,7 @@ const SignIn = (props)=> {
 
   return (
     <div>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary btn-lg" onClick={handleShow}>
         {props.title}
       </Button>
 
@@ -34,18 +34,26 @@ const SignIn = (props)=> {
              animation={false}
             >
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Sign up</Modal.Title>
         </Modal.Header>
         <Modal.Body>
 
-        <div>
+        <div >
             <form onSubmit={(event)=>handleSubmit(event) }>
-                <label> Name: <input type="text" name="username" /> </label>
-                <label> Password: <input type="password" name="password" /> </label>
 
-                <Modal.Footer>
-                  <Button variant="primary" type="submit"> Sign Up </Button>
-                </Modal.Footer>
+
+            <div className="form-group" >
+                <label style={{width: '100%'}}> <input className="form-control" type="text" name="username" placeholder="Enter username..."/> </label>
+            </div>
+
+
+            <div className="form-group" >
+                <label style={{width: '100%'}}> <input className="form-control" type="password" name="password" placeholder="Enter password..."/> </label>
+            </div>
+
+              <Modal.Footer>
+                <Button variant="primary" type="submit"> Sign Up </Button>
+              </Modal.Footer>
            </form>
         </div>
 
