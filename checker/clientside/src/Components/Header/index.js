@@ -7,34 +7,17 @@ import Cookies from 'js-cookie'
 import MoutainSelection from './MoutainSelection'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
-
+import SearchBar from '../SearchBar'
 import './style.css'
+
 class Header extends React.Component{
-  constructor(props){
-    super(props)
-      this.state = { searchTerm: '' };
-      this.onInputchange = this.onInputchange.bind(this);
-  }
-
-  onInputchange(event) {
-   this.setState({ searchTerm: event.target.value });
-   console.log(this.state)
-
-   //we can get the correct mountains here
- }
-
-
 
     async componentDidMount(){
+      console.log('firing')
       if(Cookies.get('user')){
         console.log('cookie found', Cookies.get('user') )
         await this.props.verifyUserViaCookie(Cookies.get('user'))
-
       }
-      else{
-        // console.log('cookie not set')
-      }
-
     }
 
     mount(){
@@ -48,15 +31,10 @@ class Header extends React.Component{
 
   render(){
 
-
-    // console.log(this.props.mountains)
-
     const signOut= ()=>{
        Cookies.remove('user')
        this.props.fetchAllMountains() //gets all moutains
        this.props.verifyUserViaCookie(null) //resets all values
-
-       // make a call to get the moutains and render component
     }
 
 
@@ -86,29 +64,20 @@ class Header extends React.Component{
               {this.props.error === null ? this.mount() : null}
 
                 <div className="break">
-                {this.props.username !== null ? <div className="left"> <MoutainSelection/> </div> : null}
-                {this.props.username === null ? renderLogin(): null}
-
-                  <div className="inputSearch">
-                    <input type="search" className="searchBar form-control rounded"
-                        placeholder="Search Mountains" aria-label="Search"
-                        aria-describedby="search-addon"
-                        onChange={this.onInputchange}  />
-                 </div>
+                    {this.props.username !== null ? <div className="left"> <MoutainSelection/> </div> : null}
+                    {this.props.username === null ? renderLogin(): null}
               </div>
+
+                  {this.props.username !== null ? <SearchBar/>: null}
           </div>
       </div>
     )
   }
 }
 
-//
 const mapStateToProps = (state) => {
-  console.log(state)
   return { selection: state.user.selection ,
-            user: state.user.id   ,
-            error: state.user.error ,
-            username: state.user.user
+            user: state.user.id,error: state.user.error , username: state.user.user
  }
 }
 

@@ -1,14 +1,9 @@
 import React from 'react'
-
+import MntProgress from '../MntProgress'
 import {connect} from 'react-redux'
 import {fetchAllMountains} from '../../actions'
-import './style.css'
-
-import MntProgress from '../MntProgress'
-
-
 import 'react-circular-progressbar/dist/styles.css';
-
+import './style.css'
 
 
 class Main extends React.Component{
@@ -33,32 +28,22 @@ const renderMnts = () => {
 
     return(
       <div key={index} >
-
         <div className="card">
           <h5 className="card-header title">{name}</h5>
           <div className="card-body">
             <h5 className="card-title">Conditions</h5>
 
-
-          <div className="allContent">
-
-            <MntProgress trails={ getPercentage(trails) } lifts={getPercentage(lifts)} trailInfo={trails} liftInfo={lifts} weather = {weather}/>
-                {terrain > 1 ? <div> Terrain: {terrain} </div> : null}
-            </div>
-
+              <div className="allContent">
+              <MntProgress trails={ getPercentage(trails) } lifts={getPercentage(lifts)} trailInfo={trails} liftInfo={lifts} weather = {weather}/>
+                  {terrain > 1 ? <div> Terrain: {terrain} </div> : null}
+              </div>
               <div className="links">
                   <a href={link} className="btn btn-primary" target="_blank"> Visit website</a>
                   <a href={tickets} className="btn btn-danger" target="_blank"> Buy Tickets</a>
                   <a href={report} className="btn btn-success" target="_blank"> Mountain Report</a>
             </div>
-
           </div>
         </div>
-
-
-
-
-
        </div>
     )
   })
