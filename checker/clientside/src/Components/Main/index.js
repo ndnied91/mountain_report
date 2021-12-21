@@ -2,7 +2,7 @@ import React from 'react'
 import MntProgress from '../MntProgress'
 
 import {connect} from 'react-redux'
-import {fetchAllMountains , moutainUpdateViaSearch} from '../../actions'
+import {fetchAllMountains } from '../../actions'
 import 'react-circular-progressbar/dist/styles.css';
 import './style.css'
 
@@ -54,9 +54,13 @@ const renderSearch = () =>{
 
 
 const renderMnts = () => {
+
+
+  if(this.props.mountains.length > 0){
   return this.props.mountains.map(( {name, trails, lifts, terrain , link, weather ,report , tickets} , index )=>{
 
-      if(name.toLowerCase().includes(this.state.searchTerm.toLowerCase())){
+      if( name.toLowerCase().includes(this.state.searchTerm.toLowerCase()) ){
+        // console.log(name) //once per moutain
           return(
           <div key={index} >
             <div className="card">
@@ -83,6 +87,7 @@ const renderMnts = () => {
     }
   })
 }
+}
 
 
     return(
@@ -106,4 +111,4 @@ const mapStateToProps=(state)=>{
   return { mountains: state.mountains , user: state.user.user }
 }
 
-export default connect(mapStateToProps , {fetchAllMountains , moutainUpdateViaSearch})(Main)
+export default connect(mapStateToProps , {fetchAllMountains })(Main)

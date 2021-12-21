@@ -21,19 +21,20 @@ export const  moutainSelections= (selection) =>{
 }
 
 ///THIS IS UPDATED
-export const  moutainUpdate= (selection) =>{
-    return ({ type: 'ADD_LIST' , payload : selection })
-}
 
 export const  resetSelection= () =>{
-    return ({ type: 'RESET_LIST' , payload : null })
+  console.log('cleaning...')
+    return ({ type: 'RESET_LIST' , payload : [] })
 }
 
 
-export const  moutainUpdateViaSearch = (selection) =>{
-    return ({ type: 'SEARCH_UPDATE_TERM' , payload : selection })
-}
 
+///THIS IS UPDATED
+export const  moutainUpdate= (selection) =>{
+  console.log('current list')
+  console.log(selection)
+    return ({ type: 'ADD_LIST' , payload : selection })
+}
 
 
 
