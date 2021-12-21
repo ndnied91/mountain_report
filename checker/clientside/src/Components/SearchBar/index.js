@@ -14,12 +14,33 @@ handleChange(event){
   this.setState({searchTerm: event.target.value});
 
   //get mountains and compare string
-
-  ///return the restults and render as the selected mountains 
+  ///return the restults and render as the selected mountains
 }
 
 
+
+
   render(){
+
+    const renderSearchResults=(value)=>{
+        let arr = []
+
+      this.props.selection.map((item)=>{
+
+        if(item.toLowerCase().includes(value.toLowerCase())){
+          arr.push(item)
+        }
+      })
+
+      console.log(arr)
+
+      //set it as the selection
+    }
+
+
+    renderSearchResults(this.state.searchTerm)
+
+
     return(
        <div className="inputSearch">
           <input type="search" className="searchBar form-control rounded"

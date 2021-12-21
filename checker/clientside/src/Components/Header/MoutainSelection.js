@@ -42,90 +42,90 @@ const MoutainSelection = (props)=> {
         </Modal.Header>
         <Modal.Body>
 
-        <label for='results'> Results</label>
+      <label htmlFor="Results">Results</label>
         <div className="results">
 
               <div style={ checkMnt('Blue Mountain') ? { display:'block'} : {display : 'none'} } >
                   <input className="hidden" type="checkbox" id="Blue Mountain" value="Blue Mountain" name="Blue Mountain" onChange={e => handleChange(e)} />
-                    <label for="Blue Mountain">Blue Mountain</label>
+                    <label htmlFor="Blue Mountain">Blue Mountain</label>
               </div>
 
               <div style={ checkMnt('Hunter Mountain') ? { display:'block'} : {display : 'none'} } >
                   <input className="hidden" type="checkbox" id="Hunter Mountain" value="Hunter Mountain" name="Hunter Mountain" onChange={e => handleChange(e)} />
-                    <label for="Hunter Mountain"> Hunter Mountain</label>
+                    <label htmlFor="Hunter Mountain"> Hunter Mountain</label>
               </div>
 
 
               <div style={ checkMnt('Mount Snow') ? { display:'block'} : {display : 'none'} } >
                   <input className="hidden" type="checkbox" id="Mount Snow" value="Mount Snow" name="Mount Snow" onChange={e => handleChange(e)} />
-                    <label for="Mount Snow"> Mount Snow</label>
+                    <label htmlFor="Mount Snow"> Mount Snow</label>
               </div>
 
 
               <div style={ checkMnt('Mountain Creek') ? { display:'block'} : {display : 'none'} } >
                   <input className="hidden" type="checkbox" id="Mountain Creek" value="Mountain Creek" name="Mountain Creek" onChange={e => handleChange(e)} />
-                    <label for="Mountain Creek"> Mountain Creek</label>
+                    <label htmlFor="Mountain Creek"> Mountain Creek</label>
               </div>
 
 
               <div style={ checkMnt('Stowe') ? { display:'block'} : {display : 'none'} } >
                   <input className="hidden" type="checkbox" id="Stowe" value="Stowe" name="Stowe" onChange={e => handleChange(e)} />
-                    <label for="Stowe"> Stowe</label>
+                    <label htmlFor="Stowe"> Stowe</label>
               </div>
 
               <div style={ checkMnt('Windham Mountain') ? { display:'block'} : {display : 'none'} } >
                   <input className="hidden" type="checkbox" id="Windham Mountain" value="Windham Mountain" name="Windham Mountain" onChange={e => handleChange(e)} />
-                    <label for="Windham Mountain"> Windham Mountain</label>
+                    <label htmlFor="Windham Mountain"> Windham Mountain</label>
               </div>
 
               <div style={ checkMnt('Whiteface Mountain') ? { display:'block'} : {display : 'none'} } >
                   <input className="hidden" type="checkbox" id="Whiteface Mountain" value="Whiteface Mountain" name="Whiteface Mountain" onChange={e => handleChange(e)} />
-                    <label for="Whiteface Mountain"> Whiteface Mountain</label>
+                    <label htmlFor="Whiteface Mountain"> Whiteface Mountain</label>
               </div>
 
         </div>
 
 <br/>
-<label for='Available Mountains'> Available Mountains</label>
-        <div className="dpdn">
 
+<label htmlFor="Available Mountains">Available Mountains</label>
+        <div className="dpdn">
               <div style={ checkMnt('Blue Mountain') ? { display:'none'} : {display : 'block'} } >
                   <input className="hidden" type="checkbox" id="Blue Mountain" value="Blue Mountain" name="Blue Mountain" onChange={e => handleChange(e)} />
-                    <label for="Blue Mountain">Blue Mountain</label>
+                    <label htmlFor="Blue Mountain">Blue Mountain</label>
               </div>
 
               <div style={ checkMnt('Hunter Mountain') ? { display:'none'} : {display : 'block'} } >
                   <input className="hidden" type="checkbox" id="Hunter Mountain" value="Hunter Mountain" name="Hunter Mountain" onChange={e => handleChange(e)} />
-                    <label for="Hunter Mountain">Hunter Mountain</label>
+                    <label htmlFor="Hunter Mountain">Hunter Mountain</label>
               </div>
 
               <div style={ checkMnt('Mount Snow') ? { display:'none'} : {display : 'block'} } >
                   <input className="hidden" type="checkbox" id="Mount Snow" value="Mount Snow" name="Mount Snow" onChange={e => handleChange(e)} />
-                    <label for="Mount Snow">Mount Snow</label>
+                    <label htmlFor="Mount Snow">Mount Snow</label>
               </div>
 
 
               <div style={ checkMnt('Mountain Creek') ? { display:'none'} : {display : 'block'} } >
                   <input className="hidden" type="checkbox" id="Mountain Creek" value="Mountain Creek" name="Mountain Creek" onChange={e => handleChange(e)} />
-                    <label for="Mountain Creek">Mountain Creek</label>
+                    <label htmlFor="Mountain Creek">Mountain Creek</label>
               </div>
 
 
               <div style={ checkMnt('Stowe') ? { display:'none'} : {display : 'block'} } >
                   <input className="hidden" type="checkbox" id="Stowe" value="Stowe" name="Stowe" onChange={e => handleChange(e)} />
-                    <label for="Stowe">Stowe</label>
+                    <label htmlFor="Stowe">Stowe</label>
               </div>
 
 
               <div style={ checkMnt('Windham Mountain') ? { display:'none'} : {display : 'block'} } >
                   <input className="hidden" type="checkbox" id="Windham Mountain" value="Windham Mountain" name="Windham Mountain" onChange={e => handleChange(e)} />
-                    <label for="Windham Mountain"> Windham Mountain</label>
+                    <label htmlFor="Windham Mountain"> Windham Mountain</label>
               </div>
 
 
               <div style={ checkMnt('Whiteface Mountain') ? { display:'none'} : {display : 'block'} } >
                   <input className="hidden" type="checkbox" id="Whiteface Mountain" value="Whiteface Mountain" name="Whiteface Mountain" onChange={e => handleChange(e)} />
-                    <label for="Whiteface Mountain"> Whiteface Mountain</label>
+                    <label htmlFor="Whiteface Mountain"> Whiteface Mountain</label>
               </div>
 
 
