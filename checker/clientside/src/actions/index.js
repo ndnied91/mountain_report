@@ -22,11 +22,19 @@ export const  moutainSelections= (selection) =>{
 
 ///THIS IS UPDATED
 export const  moutainUpdate= (selection) =>{
-  console.log(selection)
     return ({ type: 'ADD_LIST' , payload : selection })
-
-
 }
+
+export const  resetSelection= () =>{
+    return ({ type: 'RESET_LIST' , payload : null })
+}
+
+
+export const  moutainUpdateViaSearch = (selection) =>{
+    return ({ type: 'SEARCH_UPDATE_TERM' , payload : selection })
+}
+
+
 
 
 

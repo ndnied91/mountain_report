@@ -19,7 +19,7 @@ const removeElements = (arr,n)=> {
 
 const initialState = { selection:[] }
 
-export default function (state = initialState , action){
+export default function mntSel(state = initialState , action){
 
      switch (action.type){
        case 'ADD_ITEM':
@@ -29,10 +29,10 @@ export default function (state = initialState , action){
       case 'ADD_LIST':
            return {  ...state,  selection: [...state.selection, ...action.payload] }
 
+      case 'RESET_LIST':
+           return {  ...state,  selection: [] }
+
          default:
           return state;
         }
-
-        //this updates the list based on the current list
-
 }

@@ -1,13 +1,12 @@
 
 import React from "react";
 import {connect} from 'react-redux'
-import { verifyUserViaCookie , fetchSelectedMountains , moutainSelections  , moutainUpdate , fetchAllMountains } from '../../actions'
+import { verifyUserViaCookie , fetchSelectedMountains , moutainSelections  , moutainUpdate , fetchAllMountains , resetSelection } from '../../actions'
 
 import Cookies from 'js-cookie'
 import MoutainSelection from './MoutainSelection'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
-import SearchBar from '../SearchBar'
 import './style.css'
 
 class Header extends React.Component{
@@ -35,6 +34,8 @@ class Header extends React.Component{
        Cookies.remove('user')
        this.props.fetchAllMountains() //gets all moutains
        this.props.verifyUserViaCookie(null) //resets all values
+       this.props.resetSelection() //this resets the list
+
     }
 
 
@@ -68,7 +69,7 @@ class Header extends React.Component{
                     {this.props.username === null ? renderLogin(): null}
               </div>
 
-                  {this.props.username !== null ? <SearchBar/>: null}
+
           </div>
       </div>
     )
@@ -81,7 +82,9 @@ const mapStateToProps = (state) => {
  }
 }
 
-export default connect( mapStateToProps , {verifyUserViaCookie , fetchSelectedMountains , moutainSelections , moutainUpdate  , fetchAllMountains} )(Header)
+export default connect( mapStateToProps , {verifyUserViaCookie , fetchSelectedMountains , moutainSelections , moutainUpdate  , fetchAllMountains , resetSelection} )(Header)
+
+
 
 
 

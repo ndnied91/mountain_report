@@ -8,7 +8,7 @@ const INITIAL_STATE={
   error: null
 }
 
-export default function(state = INITIAL_STATE , action){
+export default function auth(state = INITIAL_STATE , action){
   switch(action.type){
     case 'CURRENT_USER':
       return action.payload
