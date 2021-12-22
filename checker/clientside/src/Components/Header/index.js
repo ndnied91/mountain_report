@@ -17,47 +17,7 @@ class Header extends React.Component{
       this.state = { searchTerm: '' ,  open: false };
       this.onInputchange = this.onInputchange.bind(this);
 
-
-      this.handleButtonClick = this.handleButtonClick.bind(this);
-      this.handleClickOutside = this.handleClickOutside.bind(this);
   }
-
-
-    handleButtonClick = (e) => {
-       if(this.state.open === false){
-          this.setState({ open : true})
-       }
-       else{
-           this.setState({ open : false})
-       }
-
-
-     }
-
-
-
-     container = React.createRef();
-
-
-
-
-     handleClickOutside = (event) => {
-       if (
-         this.container.current &&
-         !this.container.current.contains(event.target)
-       ) {
-         this.setState({
-           open: false,
-         });
-       }
-     };
-
-
-
-     componentWillUnmount() {
-          document.removeEventListener("mousedown", this.handleClickOutside);
-        }
-
 
 
 
@@ -71,13 +31,10 @@ class Header extends React.Component{
 
     async componentDidMount(){
 
-      document.addEventListener("mousedown", this.handleClickOutside);
-
 
       if(Cookies.get('user')){
         console.log('cookie found', Cookies.get('user') )
         await this.props.verifyUserViaCookie(Cookies.get('user'))
-
       }
       else{
         console.log('cookie not set, clearing selection')

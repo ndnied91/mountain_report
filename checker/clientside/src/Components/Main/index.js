@@ -50,11 +50,14 @@ const renderSearch = () =>{
 
 
 
+const forceUpdate = (val) =>{
+  console.log(val)
+  //send action call to update specific mountain
+}
 
 
 
 const renderMnts = () => {
-
 
   if(this.props.mountains.length > 0){
   return this.props.mountains.map(( {name, trails, lifts, terrain , link, weather ,report , tickets} , index )=>{
@@ -64,10 +67,18 @@ const renderMnts = () => {
           return(
           <div key={index} >
             <div className="card">
-              <h5 className="card-header title">{name}</h5>
+            <div>
+              <h5 className="card-header title">{name}
+              <button className="btn btn-outline-danger floated" onClick={()=>forceUpdate(name)}> Force Update</button>
+
+
+              </h5>
+
+              </div>
+
+
               <div className="card-body">
                 <h5 className="card-title">Conditions</h5>
-
                   <div className="allContent">
                   <MntProgress trails={ getPercentage(trails) } lifts={getPercentage(lifts)} trailInfo={trails} liftInfo={lifts} weather = {weather}/>
                       {terrain > 1 ? <div> Terrain: {terrain} </div> : null}
