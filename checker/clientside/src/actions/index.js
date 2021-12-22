@@ -29,6 +29,7 @@ export const  resetSelection= () =>{
 
 
 
+
 ///THIS IS UPDATED
 export const  moutainUpdate= (selection) =>{
   console.log('current list')
