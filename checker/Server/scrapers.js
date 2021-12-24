@@ -70,7 +70,7 @@ const updateBlueMnt = async()=>{
 
 ////update forcast area
       async function updateForcast(name, weather){
-        console.log(weather)
+        // console.log(weather)
         const filter = { name};
         const update = { weather };
             await Report.findOneAndUpdate(filter, update);
@@ -118,7 +118,7 @@ const updateMntCreek = () =>{
              };
                const res = await Report.findOneAndUpdate(filter, update);
 
-               console.log(res)
+               // console.log(res)
 
                if( res === null){
                  //CREATES A NEW ENTRY
@@ -143,7 +143,7 @@ const updateMntCreek = () =>{
 
        ////update forcast area
              async function updateForcast(name, weather){
-               console.log(weather)
+               // console.log(weather)
                const filter = { name};
                const update = { weather };
                    await Report.findOneAndUpdate(filter, update);
@@ -202,7 +202,7 @@ const updateWindham = () =>{
 
         ////update forcast area
               async function updateForcast(name, weather){
-                console.log(weather)
+                // console.log(weather)
                 const filter = { name};
                 const update = { weather };
                     await Report.findOneAndUpdate(filter, update);
@@ -259,7 +259,7 @@ const updateWhiteface = () => {
          ////update forcast area
                async function updateForcast(name, weather){
 
-                 console.log(weather)
+                 // console.log(weather)
                  const filter = { name};
                  const update = { weather };
                      await Report.findOneAndUpdate(filter, update);
@@ -269,8 +269,8 @@ const updateWhiteface = () => {
                   weather.find({search: '12997', degreeType: 'F'}, async function(err, result) {
                    if(err) console.log(err);
                    if(result){
-                     console.log('result is..')
-                     console.log(result[0].forecast)
+                     // console.log('result is..')
+                     // console.log(result[0].forecast)
                      let current = {
                        temperature : result[0].current.temperature, skytext : result[0].current.skytext, date : result[0].current.date,
                        feelslike : result[0].current.feelslike, shortday : result[0].current.shortday, imageUrl : result[0].current.imageUrl
@@ -317,7 +317,7 @@ const updateMntSnow = () =>{
 
           ////update forcast area
                 async function updateForcast(name, weather){
-                  console.log(weather)
+                  // console.log(weather)
                   const filter = { name};
                   const update = { weather };
                       await Report.findOneAndUpdate(filter, update);
@@ -374,7 +374,7 @@ const updateHunter = () =>{
          update() //for everything other than weather
 
                async function updateForcast(name, weather){
-                 console.log(weather)
+                 // console.log(weather)
                  const filter = { name};
                  const update = { weather };
                      await Report.findOneAndUpdate(filter, update);
@@ -429,7 +429,7 @@ const updateStowe = () =>{
 
           ////update forcast area
                 async function updateForcast(name, weather){
-                  console.log(weather)
+                  // console.log(weather)
                   const filter = { name};
                   const update = { weather };
                       await Report.findOneAndUpdate(filter, update);

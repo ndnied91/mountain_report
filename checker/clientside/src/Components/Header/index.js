@@ -23,8 +23,6 @@ class Header extends React.Component{
 
   onInputchange(event) {
    this.setState({ searchTerm: event.target.value });
-
-   //we can get the correct mountains here
  }
 
 
@@ -95,8 +93,7 @@ class Header extends React.Component{
 const mapStateToProps = (state) => {
   console.log(state)
   return {
-        selection: state.user.selection , user: state.user.id ,
-            error: state.user.error , username: state.user.user
+        selection: state.user.selection , user: state.user.id , error: state.user.error , username: state.user.user
  }
 }
 

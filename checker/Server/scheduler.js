@@ -16,18 +16,18 @@ console.log(`Current time: ${new Date()}`);
 
 
 
-const update= async() =>{
-  console.log('upating all')
-  await mnts.updateBlueMnt()
-  await mnts.updateWhiteface()
-  await mnts.updateWindham()
-  await mnts.updateMntSnow()
-  await mnts.updateHunter()
-  await mnts.updateStowe()
-  await mnts.updateMntCreek()
-}
-//
-update()
+// const update= async() =>{
+//   console.log('upating all')
+//   await mnts.updateBlueMnt()
+//   await mnts.updateWhiteface()
+//   await mnts.updateWindham()
+//   await mnts.updateMntSnow()
+//   await mnts.updateHunter()
+//   await mnts.updateStowe()
+//   await mnts.updateMntCreek()
+// }
+// //
+// update()
 
     // await mnts.updateBlueMnt()
 

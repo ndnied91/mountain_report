@@ -18,14 +18,10 @@ mongoose.connect(keys.mongoURI)
 const passport = require("passport");
 const passportLocal = require("passport-local").Strategy;
 const cookieParser = require("cookie-parser");
-
 const session = require("express-session");
 
-
-
 app.use(bodyParser.json());
-
- app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.use(
@@ -41,14 +37,6 @@ app.use(passport.session());
 
 require("./Server/services/passportConfig")(passport);
 
-
-
-// const passport = require('passport')
-// const passportLocal = require("passport-local").Strategy;
-// const bcrypt = require("bcryptjs");
-
-
-
 const Resort = require('./Server/Models/Resort.js')
 let User = require('./Server/Models/User.js')
 
@@ -63,25 +51,47 @@ let mnts = require("./Server/scrapers.js");
 var weather = require('weather-js');
 
 
-
 //all auth routes
 require("./Server/Auth")(app);
 
 
 
 
-//
-// let zip = '07067'
-//   weather.find({search: zip, degreeType: 'F'}, function(err, result) {
-//     if(err) console.log(err);
-//
-//     let forecast = result[0].forecast
-//     let current =result[0].current
-//
-//     console.log(current)
-//
-//   });
-//
+
+async function forceUpdate(mountains){
+    switch (mountains) {
+      case 'Mountain Creek':
+        return await mnts.updateMntCreek()
+        break;
+
+    case 'Windham Mountain':
+        return await mnts.updateWindham()
+          break;
+    case 'Blue Mountain':
+        return  await mnts.updateBlueMnt()
+          break;
+
+    case 'Stowe':
+        return  await mnts.updateStowe()
+          break;
+
+    case 'Hunter Mountain':
+        return await mnts.updateHunter()
+          break;
+
+    case 'Mount Snow':
+        return await mnts.updateMntSnow()
+          break;
+
+    case 'Whiteface Mountain':
+        return await mnts.updateWhiteface()
+          break;
+        default:
+        return null
+    }
+}
+////////
+
 
 
 async function updateMntSelection(id, mnts){
@@ -119,10 +129,30 @@ app.post('/api/mountains' , async (req,res)=>{
     const mountains = await Resort.find({ 'name': { $in: req.body.values } });
     res.send(mountains)
   }
-
-
 })
 
+
+
+
+app.post('/api/mountains/:id', async (req,res)  =>{
+
+    let mountain = req.params.id
+    let selection = req.body.selection
+
+    forceUpdate(mountain)
+
+      if(selection.length > 0){
+        const mountains = await Resort.find({ 'name': { $in: selection } });
+        res.send(mountains)
+        //get the specific users mountains
+      }
+      else{
+        let mountains =  await Resort.find()
+          res.send(mountains)
+      }
+
+      //IF USER IS NOT NULL RETURN SPEFICIC LIST
+})
 
 
 

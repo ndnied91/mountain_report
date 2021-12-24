@@ -30,6 +30,7 @@ export const  resetSelection= () =>{
 
 
 
+
 ///THIS IS UPDATED
 export const  moutainUpdate= (selection) =>{
   console.log('current list')
@@ -37,6 +38,16 @@ export const  moutainUpdate= (selection) =>{
     return ({ type: 'ADD_LIST' , payload : selection })
 }
 
+
+
+
+
+export const updateMountainForce = (id, selection ) => async dispatch => {
+  //this updates the individual mountain based on selection force update funciton
+  console.log(id, selection)
+  const res = await axios.post(`/api/mountains/${id}` , {selection})
+  dispatch({ type: 'FETCH_MNTS' , payload: res.data})
+}
 
 
 

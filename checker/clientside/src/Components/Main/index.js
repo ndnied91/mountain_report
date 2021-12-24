@@ -2,7 +2,7 @@ import React from 'react'
 import MntProgress from '../MntProgress'
 
 import {connect} from 'react-redux'
-import {fetchAllMountains } from '../../actions'
+import {fetchAllMountains  , updateMountainForce} from '../../actions'
 import 'react-circular-progressbar/dist/styles.css';
 import './style.css'
 
@@ -50,26 +50,34 @@ const renderSearch = () =>{
 
 
 
-const forceUpdate = (val) =>{
-  console.log(val)
-  //send action call to update specific mountain
-}
+const renderTime = (timestamp) =>{
 
+  let d = new Date(timestamp)
+  let current = d.toLocaleString('en-US', { timeZone: 'America/New_York' });
+  return current.replaceAll(',', '')
+
+
+
+// console.log(year, month, day, hours , min , sec)
+
+  return timestamp
+}
 
 
 const renderMnts = () => {
 
   if(this.props.mountains.length > 0){
-  return this.props.mountains.map(( {name, trails, lifts, terrain , link, weather ,report , tickets} , index )=>{
+
+  return this.props.mountains.map(( {name, trails, lifts, terrain , link, weather ,report , tickets , timestamp} , index )=>{
 
       if( name.toLowerCase().includes(this.state.searchTerm.toLowerCase()) ){
-        // console.log(name) //once per moutain
+
           return(
           <div key={index} >
             <div className="card">
             <div>
               <h5 className="card-header title">{name}
-              <button className="btn btn-outline-danger floated" onClick={()=>forceUpdate(name)}> Force Update</button>
+              <button className="btn btn-outline-danger floated" onClick={()=>this.props.updateMountainForce(name , this.props.selection)}> Force Update</button>
 
 
               </h5>
@@ -78,6 +86,7 @@ const renderMnts = () => {
 
 
               <div className="card-body">
+              <p> Last Update: {renderTime(timestamp)} </p>
                 <h5 className="card-title">Conditions</h5>
                   <div className="allContent">
                   <MntProgress trails={ getPercentage(trails) } lifts={getPercentage(lifts)} trailInfo={trails} liftInfo={lifts} weather = {weather}/>
@@ -119,7 +128,8 @@ const renderMnts = () => {
 
 
 const mapStateToProps=(state)=>{
-  return { mountains: state.mountains , user: state.user.user }
+  // console.log(state)
+  return { mountains: state.mountains , user: state.user.user , selection: state.selection.selection }
 }
 
-export default connect(mapStateToProps , {fetchAllMountains })(Main)
+export default connect(mapStateToProps , {fetchAllMountains , updateMountainForce })(Main)
