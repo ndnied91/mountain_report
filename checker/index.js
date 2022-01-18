@@ -139,7 +139,7 @@ app.post('/api/mountains/:id', async (req,res)  =>{
     let mountain = req.params.id
     let selection = req.body.selection
 
-    forceUpdate(mountain)
+      await forceUpdate(mountain)
 
       if(selection.length > 0){
         const mountains = await Resort.find({ 'name': { $in: selection } });

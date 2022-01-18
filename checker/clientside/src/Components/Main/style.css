@@ -30,6 +30,9 @@ body{
 }
 
 
+.btn:focus {
+  box-shadow: none;
+}
 
 .content{
   display: flex;
@@ -90,5 +93,4 @@ body{
   position:relative;
   height: 45px;
   width: 60%;
-
 }

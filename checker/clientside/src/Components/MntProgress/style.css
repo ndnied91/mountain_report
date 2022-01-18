@@ -53,22 +53,15 @@ width: 100%;
 }
 
 
-/* .label{
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  width: 100%;
-  font-weight:bold;
+.infoClick{
+  width: 56.5%;
+  height: 76%;
+  transform: translateY(-115%) translateX(4%)
 }
 
 
-.label_k{
-  display: flex;
-  text-align: center;
-  display: flex;
-  width: 100%;
-  position:fixed;
-  font-weight:bold;
-  padding-right: -40px;
-
-} */
+.infoClick:hover{
+  cursor: pointer;
+  opacity: 0.6;
+  background-color: grey;
+}

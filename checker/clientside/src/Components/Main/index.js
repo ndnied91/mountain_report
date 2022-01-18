@@ -10,7 +10,7 @@ import './style.css'
 class Main extends React.Component{
   constructor(props){
     super(props)
-      this.state = { searchTerm: '' };
+      this.state = { searchTerm: ''  ,  disabled: false};
       this.handleChange = this.handleChange.bind(this);
   }
 
@@ -18,14 +18,34 @@ class Main extends React.Component{
     this.setState({searchTerm: event.target.value});
   }
 
+  handleClick = () => {
+    console.log('clicked')
+      this.setState({ mssg: "Hi there!" });
+    };
+
 
   componentDidMount(){
       this.props.fetchAllMountains()
   }
 
 
-  render(){
 
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.mountains !== prevProps.mountains) {
+      console.log('UPDATED MOUNTAIN')
+      this.setState({disabled: false})
+    }
+  }
+
+
+
+
+
+
+
+
+  render(){
       const getPercentage = (trails)=>{
         let arr = trails.split('/')
         if(!(arr[0] === '0')){
@@ -55,12 +75,17 @@ const renderTime = (timestamp) =>{
   let d = new Date(timestamp)
   let current = d.toLocaleString('en-US', { timeZone: 'America/New_York' });
   return current.replaceAll(',', '')
-
-
-
-// console.log(year, month, day, hours , min , sec)
-
+  this.setState({ key: Math.random() });
   return timestamp
+}
+
+
+
+const updateMnt =(name , selection)=>{
+  this.props.updateMountainForce(name ,selection)
+  this.setState({disabled: true})
+
+  //set the button as disabled until state rerenders
 }
 
 
@@ -75,22 +100,24 @@ const renderMnts = () => {
           return(
           <div key={index} >
             <div className="card">
-            <div>
+            <div onClick={this.handleClick}>
               <h5 className="card-header title">{name}
-              <button className="btn btn-outline-danger floated" onClick={()=>this.props.updateMountainForce(name , this.props.selection)}> Force Update</button>
-
+              <button className={`btn btn-outline-danger floated ${this.state.disabled ? "disabled" : ""}`}
+                      onClick={()=>updateMnt(name , this.props.selection)}>
+                              Force Update</button>
 
               </h5>
-
-              </div>
+            </div>
 
 
               <div className="card-body">
-              <p> Last Update: {renderTime(timestamp)} </p>
+              <p key={this.state.key}> Last Update: {renderTime(timestamp)} </p>
                 <h5 className="card-title">Conditions</h5>
                   <div className="allContent">
-                  <MntProgress trails={ getPercentage(trails) } lifts={getPercentage(lifts)} trailInfo={trails} liftInfo={lifts} weather = {weather}/>
-                      {terrain > 1 ? <div> Terrain: {terrain} </div> : null}
+                      <MntProgress trails={ getPercentage(trails) } lifts={getPercentage(lifts)}
+                              trailInfo = {trails}
+                              liftInfo = {lifts}
+                              weather = {weather}/>
                   </div>
                   <div className="links">
                       <a href={link} className="btn btn-primary" target="_blank" rel="noopener noreferrer"> Visit website</a>
@@ -133,3 +160,7 @@ const mapStateToProps=(state)=>{
 }
 
 export default connect(mapStateToProps , {fetchAllMountains , updateMountainForce })(Main)
+
+
+// <button className="btn btn-outline-danger floated" onClick={()=>updateMnt(name , this.props.selection)}> Force Update</button>
+// <button className="btn btn-outline-danger floated" onClick={()=>this.props.updateMountainForce(name , this.props.selection)}> Force Update</button>
