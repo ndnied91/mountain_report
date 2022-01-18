@@ -7,7 +7,26 @@
 
 body{
   padding: 30px;
+  background-image: url('./moutains.png');
+  background-position: 100px -75px;
 }
+
+
+
+body::after {
+  content: "";
+  background-image: url('./moutains.png');
+  opacity: 0.5;
+  filter: grayscale(100%);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+
 
 
 
