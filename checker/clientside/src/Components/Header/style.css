@@ -95,12 +95,19 @@
 }
 
 
+
+
+@media only screen and (max-width: 600px) {
+  .left{
+    float: left;
+    padding-left: 0px;
+  }
+}
+
+
+
+
 /*
- */
-
-
-
-/* 
  .btnContainer {
   position: relative;
   display: inline-block;

@@ -84,7 +84,6 @@ body{
   justify-content: center;
   text-align: center;
   padding-top: 40px;
-
 }
 
 .searchBar{
@@ -92,5 +91,28 @@ body{
   border-radius: 10px;
   position:relative;
   height: 45px;
-  width: 60%;
+  width: 75%;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .searchBar{
+      text-align: center;
+      border-radius: 10px;
+      position:relative;
+      height: 45px;
+      width: 100%;
+    }
+
+    .inputSearch{
+      padding-top: 15px;
+      width: 100%;
+    }
+
+    .card{
+      margin: 0px;
+    }
+    .visit-web{
+      display: none;
+    }
 }

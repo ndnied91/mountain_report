@@ -70,7 +70,7 @@ class Header extends React.Component{
   return(
 
       <div>
-        <h1 className="mainTitle">Mountain Report</h1>
+        <h1 className="mainTitle">Resort Report</h1>
           <div className="test">
               {this.props.error === null && this.state.open === false ? this.mount() : null}
 

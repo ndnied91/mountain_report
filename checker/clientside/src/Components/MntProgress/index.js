@@ -27,8 +27,8 @@ const MntProgress = (props) => {
         let url = props.weather[0].current.imageUrl
 
     return(
-          <div className="">
-              <div>
+          <div >
+              <div className="weather-area">
                 <img src={url} alt={'Weather'}/>
                 <span  className="current-temp">{current.temperature}° </span>
                 <p className="feelslike-temp">Feels Like {current.feelslike}°</p  >
@@ -64,7 +64,7 @@ return(
                               text={`${roundedValue}%` }
                               label={'Trails'}
                               styles={{
-                                root: { transform: 'scale(0.6) translateX(-10%)', margin: '-20px' },
+                                root: { transform: 'scale(0.6) translateX(-10%)' },
                                 path: {
                                   stroke: `rgba(62, 152, 199, ${percentage / 100})`,
                                   strokeLinecap: 'butt',
@@ -114,7 +114,7 @@ return(
                               value={value}
                               text={`${roundedValue}%` }
                               styles={{
-                                root: { transform: 'scale(0.6) translateX(-50%)', margin: '-20px' },
+                                root: { transform: 'scale(0.6) translateX(-50%)' },
                                 path: {
                                   stroke: `rgba(62, 152, 199, ${percentage / 100})`,
                                   strokeLinecap: 'butt',

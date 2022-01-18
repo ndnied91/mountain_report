@@ -120,7 +120,9 @@ const renderMnts = () => {
                               weather = {weather}/>
                   </div>
                   <div className="links">
-                      <a href={link} className="btn btn-primary" target="_blank" rel="noopener noreferrer"> Visit website</a>
+                      <a href={link} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                      <span className="visit-web">Visit website </span>
+                      </a>
                       <a href={tickets} className="btn btn-danger" target="_blank" rel="noopener noreferrer"> Buy Tickets</a>
                       <a href={report} className="btn btn-success" target="_blank" rel="noopener noreferrer"> Mountain Report</a>
                 </div>
