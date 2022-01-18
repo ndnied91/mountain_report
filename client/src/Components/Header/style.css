@@ -95,6 +95,21 @@
 }
 
 
+.collapseStyling{
+  float: right;
+  text-align: end;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+@media only screen and (max-width: 990px  ) {
+  .collapseStyling{
+    width: 100%;
+    text-align: center;
+  }
+
+}
+
 
 
 @media only screen and (max-width: 600px) {
