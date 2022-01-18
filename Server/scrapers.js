@@ -36,6 +36,23 @@ const Report = require('./Models/Resort.js')
 
 
 
+// 
+//
+//
+//
+// {
+//   "name": "mini-fitness",
+//   "version": "1.0.0",
+//   "description": "Building a fitness app",
+//   "main": "index.js",
+//   "scripts": {
+//     "start": "node index.js",
+//     "client": "npm run start --prefix clientside",
+//     "dev": "concurrently \"npm run start\"  \"npm run client\"",
+//     "test": "echo \"Error: no test specified\" && exit 1",
+//     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix clientside && npm run build --prefix clientside"
+//   },
+
 
 
 
