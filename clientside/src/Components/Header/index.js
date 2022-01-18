@@ -56,8 +56,10 @@ class Header extends React.Component{
           <div>
               <div className="box">
                   <div className="left"> <MoutainSelection/> </div>
-                  <div className="push"><SignUp title={'Sign Up'}/></div>
-                  <div className="push"><SignIn title={'Sign In'}/></div>
+                  <div className="buttonUpdate">
+                      <div className="push"><SignUp title={'Sign Up'}/></div>
+                      <div className="push"><SignIn title={'Sign In'}/></div>
+                  </div>
               </div>
           </div>
 

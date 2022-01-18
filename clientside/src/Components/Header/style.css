@@ -102,6 +102,16 @@
     float: left;
     padding-left: 0px;
   }
+
+  .button-update{
+    background-color: red;
+  }
+
+  .push {
+    float: right;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }
 
 

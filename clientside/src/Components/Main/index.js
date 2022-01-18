@@ -7,6 +7,9 @@ import 'react-circular-progressbar/dist/styles.css';
 import './style.css'
 
 
+import { HouseFill , TicketFill , CloudyFill } from 'react-bootstrap-icons';
+
+
 class Main extends React.Component{
   constructor(props){
     super(props)
@@ -109,8 +112,7 @@ const renderMnts = () => {
               </h5>
             </div>
 
-
-              <div className="card-body">
+            <div className="card-body">
               <p key={this.state.key}> Last Update: {renderTime(timestamp)} </p>
                 <h5 className="card-title">Conditions</h5>
                   <div className="allContent">
@@ -121,10 +123,18 @@ const renderMnts = () => {
                   </div>
                   <div className="links">
                       <a href={link} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                      <span className="visit-web">Visit website </span>
+                      <span className="btn-text">Visit website </span>
+                        <span className="btn-icon"> <HouseFill size={24}/> </span>
                       </a>
-                      <a href={tickets} className="btn btn-danger" target="_blank" rel="noopener noreferrer"> Buy Tickets</a>
-                      <a href={report} className="btn btn-success" target="_blank" rel="noopener noreferrer"> Mountain Report</a>
+                      <a href={tickets} className="btn btn-danger" target="_blank" rel="noopener noreferrer">
+                      <span className="btn-text">Buy Tickets </span>
+                        <span className="btn-icon"> <TicketFill size={24}/> </span>
+
+                      </a>
+                      <a href={report} className="btn btn-success" target="_blank" rel="noopener noreferrer">
+                      <span className="btn-text">Buy Tickets </span>
+                        <span className="btn-icon"> <CloudyFill size={24} /> </span>
+                      </a>
                 </div>
               </div>
             </div>
@@ -140,7 +150,7 @@ const renderMnts = () => {
 
 
     return(
-       <div>
+       <div className="top-container">
 
           <div>
             {this.props.user !== null ? renderSearch() : null }

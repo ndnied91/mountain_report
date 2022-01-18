@@ -38,7 +38,6 @@ body{
   display: flex;
   flex-wrap: wrap;
   justify-content:center;
-
 }
 
 .tf-info{
@@ -95,6 +94,10 @@ body{
 }
 
 
+.btn-icon{
+  display: none;
+}
+
 @media only screen and (max-width: 600px) {
     .searchBar{
       text-align: center;
@@ -111,8 +114,23 @@ body{
 
     .card{
       margin: 0px;
+      margin-bottom: 20px;
     }
-    .visit-web{
+    .btn-text{
       display: none;
+    }
+    .btn-icon{
+      display: block;
+    }
+
+    .content{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content:unset;
+      padding-top: 45px;
+      margin: 0 !important;
+    }
+    .top-container{
+      display: inline-block;
     }
 }
