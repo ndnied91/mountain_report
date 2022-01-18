@@ -41,8 +41,7 @@ const Resort = require('./Server/Models/Resort.js')
 let User = require('./Server/Models/User.js')
 
 
-const PORT = process.env.port || 3000
-
+const PORT = process.env.PORT || 3000
 
 require('./Server/scheduler.js')
 
