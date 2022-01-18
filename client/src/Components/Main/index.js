@@ -104,12 +104,12 @@ const renderMnts = () => {
           <div key={index} >
             <div className="card">
             <div onClick={this.handleClick}>
-              <h5 className="card-header title">{name}
+            <div className="card-header headerInfo">
+              <span className="title">{name} </span>
               <button className={`btn btn-outline-danger floated ${this.state.disabled ? "disabled" : ""}`}
-                      onClick={()=>updateMnt(name , this.props.selection)}>
-                              Force Update</button>
-
-              </h5>
+                      onClick={()=>updateMnt(name , this.props.selection)}> Force Update
+              </button>
+              </div>
             </div>
 
             <div className="card-body">
