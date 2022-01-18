@@ -7,6 +7,8 @@ const rp = require('request-promise');
 const cheerio = require('cheerio')
 const mongoose = require('mongoose')
 const moment = require('moment-timezone');
+const path = require('path');
+
 
 let request = require('request');
 
@@ -190,7 +192,7 @@ if (process.env.NODE_ENV === 'production') {
 
 
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'clientside', 'build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
 

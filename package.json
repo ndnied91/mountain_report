@@ -1,5 +1,4 @@
-
-  {
+{
   "name": "stock_site",
   "version": "1.0.0",
   "description": "Resort Report",
@@ -37,6 +36,7 @@
     "openweather-apis": "^4.4.2",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0",
+    "path": "^0.12.7",
     "react-move": "^6.5.0",
     "regex-parser": "^2.2.11",
     "request": "^2.88.2",
