@@ -101,6 +101,7 @@ width: 100%;
 
   .current-feelslike{
     display: flex;
+
     justify-content: center;
     align-self: center;
     transform: scale(120%) translateX(-25px);
@@ -127,26 +128,3 @@ width: 100%;
 .weather-area{
 
 }
-
-/* .topCard{
-  transform: scale(0.9);
-} */
-
-
-/* .mntsConds {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    padding-bottom: 10px;
-} */
-
-
-
-
-
-/* .current-feelslike{
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  transform: scale(140%) translateX(-40px);
-} */
