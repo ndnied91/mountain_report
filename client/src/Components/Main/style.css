@@ -89,7 +89,7 @@ body{
   text-align: center;
   border-radius: 10px;
   position:relative;
-  height: 45px;
+  /* height: 45px; */
   width: 75%;
 }
 
@@ -104,7 +104,8 @@ body{
       border-radius: 10px;
       position:relative;
       height: 45px;
-      width: 100%;
+      width: 90%;
+      margin-bottom: 15px;
     }
 
     .inputSearch{
@@ -114,8 +115,9 @@ body{
 
     .card{
       margin: 0px;
-      margin-bottom: 20px;
+      /* margin-bottom: 20px; */
       width: 100%;
+      transform: scale(0.95);
     }
     .btn-text{
       display: none;
@@ -128,7 +130,7 @@ body{
       display: flex;
       flex-wrap: wrap;
       justify-content:unset;
-      padding-top: 45px;
+      /* padding-top: 45px; */
       margin: 0 !important;
     }
     .top-container{
@@ -137,4 +139,15 @@ body{
     .card-header{
     font-size: 24px;
     }
+
+    .test{
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+}
+
+
+
+li:hover {
+    background-color: transparent;
 }

@@ -1,5 +1,6 @@
 .mainTitle{
   text-align: center;
+  font-size: 60px;
 }
 
 
@@ -98,8 +99,6 @@
 .collapseStyling{
   float: right;
   text-align: end;
-  padding-left: 25px;
-  padding-right: 25px;
 }
 
 @media only screen and (max-width: 990px  ) {
@@ -127,6 +126,15 @@
     padding-left: 0px;
     padding-right: 0px;
   }
+  .mainTitle{
+    font-size: 41px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    letter-spacing: 3.5px;
+  }
+
+
+  /* margin-bottom: 20px; */
 }
 
 

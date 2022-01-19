@@ -7,7 +7,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import './style.css'
 
 
-import { HouseFill , TicketFill , CloudyFill } from 'react-bootstrap-icons';
+import { HouseFill , TicketFill , CloudyFill , ArrowCounterclockwise } from 'react-bootstrap-icons';
 
 
 class Main extends React.Component{
@@ -101,13 +101,14 @@ const renderMnts = () => {
       if( name.toLowerCase().includes(this.state.searchTerm.toLowerCase()) ){
 
           return(
-          <div key={index} >
+          <div key={index} className="topCard"> 
             <div className="card">
             <div onClick={this.handleClick}>
             <div className="card-header headerInfo">
               <span className="title">{name} </span>
               <button className={`btn btn-outline-danger floated ${this.state.disabled ? "disabled" : ""}`}
-                      onClick={()=>updateMnt(name , this.props.selection)}> Force Update
+                      onClick={()=>updateMnt(name , this.props.selection)}>
+                        <span className="forceUpdate"> <ArrowCounterclockwise size={24}/> </span>
               </button>
               </div>
             </div>

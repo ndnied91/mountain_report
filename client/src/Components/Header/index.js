@@ -24,16 +24,14 @@ class Header extends React.Component{
 
   }
 
-
-
-
   onInputchange(event) {
    this.setState({ searchTerm: event.target.value });
  }
 
 
-
     async componentDidMount(){
+
+      document.addEventListener('mousedown' , this.handleClickX, false)
 
 
       if(Cookies.get('user')){
@@ -54,39 +52,36 @@ class Header extends React.Component{
     }
 
 
+    componentWillUnmount(){
+      document.removeEventListener('mousedown' , this.handleClickX, false)
+    }
+
+
+
+      handleClickX =(e)=>{
+        console.log(e)
+        if(this.node !== null){
+          return
+          //the clicks is inside, continue to whatever you are doing
+        }
+
+        else{
+            if(this.state.notShow === false){
+              this.handleNavCollapse()
+            }
+        }
+        //the click is outside, do something
+      }
+
 
   render(){
 
       const renderLogin = () =>{
         return(
-          // <div>
-          //     <div className="box">
-          //         <div className="left"> <MoutainSelection/> </div>
-          //         <div className="buttonUpdate">
-          //
-          //           <div ref={(ref) => this._div = ref} > {/* this is for dropdown, DONT TOUCH  */}
-          //               <div ref={node => this.node = node}> {/* this is for dropdown, DONT TOUCH  */}
-          //
-          //               <button className="navbar-toggler"  style={{float: 'right' }} type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-          //                 <span onClick ={ ()=> this.handleNavCollapse() } className="navbar-toggler-icon"></span>
-          //               </button>
-          //
-          //                 <nav className="navbar navbar-expand-lg navbar-light bannerGround" >
-          //                     <div className={`${this.state.notShow ? 'collapse ' : null} navbar-collapse `} >
-          //                         <div className="push"><SignUp title={'Sign Up'}/></div>
-          //                         <div className="push"><SignIn title={'Sign In'}/></div>
-          //                     </div>
-          //                 </nav>
-          //             </div>
-          //          </div>
-          //
-          //         </div>
-          //     </div>
-          // </div>
+
           <div ref={node => this.node = node}> {/* this is for dropdown, DONT TOUCH  */}
 
                  <nav className="navbar navbar-expand-lg navbar-light bannerGround" >
-
 
                     <div className="left"> <MoutainSelection/> </div>
 

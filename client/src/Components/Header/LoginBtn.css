@@ -15,7 +15,15 @@
   font-size: 40px;
 }
 
+.nav-item{
+  padding-top: 1px;
+  padding-right:0px; 
+  padding-bottom: 2.5px !important;
+}
 
+/* .nav-item li{
+  padding: 0 !important;
+} */
 
 .dropdown {
   position: absolute;
