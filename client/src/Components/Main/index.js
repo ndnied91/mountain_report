@@ -101,7 +101,7 @@ const renderMnts = () => {
       if( name.toLowerCase().includes(this.state.searchTerm.toLowerCase()) ){
 
           return(
-          <div key={index} className="topCard"> 
+          <div key={index} className="topCard">
             <div className="card">
             <div onClick={this.handleClick}>
             <div className="card-header headerInfo">
