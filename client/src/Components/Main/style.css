@@ -98,6 +98,13 @@ body{
   display: none;
 }
 
+
+
+.modal-backdrop{
+  height: 105vh !important;
+}
+
+
 @media only screen and (max-width: 600px) {
     .searchBar{
       text-align: center;
@@ -132,7 +139,6 @@ body{
       justify-content:unset;
       /* padding-top: 45px; */
       margin: 0 !important;
-
       padding-top: 10px;
       display: block;
 
