@@ -42,7 +42,6 @@
 
 .active{
   color: blue;
-
 }
 
 .modal-content {
@@ -53,6 +52,9 @@
 
 @media only screen and (max-width: 660px ) {
   .modal-dialog {
-    margin-top: 50%;
+    margin-top: 30%;
+  }
+  .active{
+    color: grey;
   }
 }

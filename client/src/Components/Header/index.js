@@ -57,7 +57,7 @@ class Header extends React.Component{
          <nav className="bannerGround" >
             <div className="left"> <MoutainSelection/> </div>
 
-              <div className="push"> <UserModal title={'Login'}/> </div>
+              <div className="push mobile-adjustment"> <UserModal title={'Login'}/> </div>
            </nav>
         )
       }

@@ -7,6 +7,9 @@ import {connect} from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.min.css';
  import './style.css'
 
+
+import logo from './mountain.png'; // Tell Webpack this JS file uses this image
+
 const MoutainSelection = (props)=> {
   const [show, setShow] = useState(false);
 
@@ -32,7 +35,11 @@ const MoutainSelection = (props)=> {
 
   return(
     <div>
-      <Button variant="primary" className="btn-lg" onClick={handleShow}> Mountain Selector </Button>
+      <Button variant="btn btn-outline-primary" className="btn-lg" onClick={handleShow}>
+
+        <span className="mnt-selection-text"> Mountain Selector</span>
+        <span> <img className="mnt-image mnt-selection-img" src={logo} />  </span>
+      </Button>
 
       <Modal show={show}
              onHide={handleClose}

@@ -110,6 +110,12 @@
 }
 
 
+.mnt-image{
+  height: 25px;
+  width: 25px;
+  transform: translateX(5px);
+}
+
 
 @media only screen and (max-width: 600px) {
   .left{
@@ -133,8 +139,20 @@
     letter-spacing: 3.5px;
   }
 
+  .mnt-selection-text{
+    display: none;
+  }
 
-  /* margin-bottom: 20px; */
+  .mnt-image {
+    height: 30px;
+    width: 30px;
+    transform: translateX(0px);
+}
+
+  .mobile-adjustment div button{
+    height: 45px;
+  }
+
 }
 
 
