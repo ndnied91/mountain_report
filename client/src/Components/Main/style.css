@@ -134,7 +134,7 @@ body{
       margin: 0 !important;
     }
     .top-container{
-      display: inline-block;
+      /* display: inline-block; */
     }
     .card-header{
     font-size: 24px;
