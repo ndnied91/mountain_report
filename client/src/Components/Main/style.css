@@ -132,6 +132,10 @@ body{
       justify-content:unset;
       /* padding-top: 45px; */
       margin: 0 !important;
+
+      padding-top: 10px;
+      display: block;
+
     }
     .top-container{
       /* display: inline-block; */
