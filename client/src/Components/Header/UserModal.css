@@ -46,6 +46,7 @@
 
 .modal-content {
     height: 450px;
+    z-index: 9999999 !important;
 }
 
 

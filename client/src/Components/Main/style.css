@@ -101,7 +101,8 @@ body{
 
 
 .modal-backdrop{
-  height: 105vh !important;
+  height: 110vh !important;
+  z-index: 9999999 !important;
 }
 
 
