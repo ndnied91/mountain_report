@@ -144,10 +144,13 @@ const MoutainSelection = (props)=> {
 
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}> Close </Button>
-          <Button variant="primary" onClick={()=>props.fetchSelectedMountains(props.selection, props.user).then(()=>handleClose())}>
+
+        <div className="mnt-buttons">
+          <Button className="mnt-close-btn" variant="secondary" onClick={handleClose}> Close </Button>
+          <Button className="mnt-save-changes-btn" variant="primary" onClick={()=>props.fetchSelectedMountains(props.selection, props.user).then(()=>handleClose())}>
             Save Changes
           </Button>
+          </div>
         </Modal.Footer>
       </Modal>
     </div>
