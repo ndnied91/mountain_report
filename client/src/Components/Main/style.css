@@ -116,6 +116,10 @@ body{
       margin-bottom: 15px;
     }
 
+  .inputSearch input[type=text]{
+    font-size: 16px;
+  }
+
     .inputSearch{
       padding-top: 15px;
       width: 100%;
@@ -123,7 +127,6 @@ body{
 
     .card{
       margin: 0px;
-      /* margin-bottom: 20px; */
       width: 100%;
       transform: scale(0.95);
     }

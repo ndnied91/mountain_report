@@ -63,7 +63,7 @@ class Main extends React.Component{
 const renderSearch = () =>{
   return(
   <div className="inputSearch">
-     <input type="search" className="searchBar form-control rounded"
+     <input type="text" className="searchBar form-control rounded"
          placeholder="Search Mountains" aria-label="Search"
          aria-describedby="search-addon"
          onChange={this.handleChange}/>
