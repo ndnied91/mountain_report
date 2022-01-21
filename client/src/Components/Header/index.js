@@ -5,22 +5,18 @@ import { verifyUserViaCookie , fetchSelectedMountains , moutainSelections  , mou
 
 import Cookies from 'js-cookie'
 import MoutainSelection from './MoutainSelection'
-import SignIn from './SignIn'
-import SignUp from './SignUp'
+
 
 import LoginBtn from './LoginBtn'
+
+import UserModal from './UserModal'
 
 import './style.css'
 class Header extends React.Component{
   constructor(props){
     super(props)
-      this.state = { searchTerm: '' ,  open: false  , notShow: true  };
+      this.state = { searchTerm: '' ,  open: false };
       this.onInputchange = this.onInputchange.bind(this);
-
-      this.handleNavCollapse = () => {
-                if(this.state.notShow === true){ this.setState({notShow : false}) }
-                else{ this.setState({notShow : true}) }
-      }
 
   }
 
@@ -31,7 +27,6 @@ class Header extends React.Component{
 
     async componentDidMount(){
 
-      document.addEventListener('mousedown' , this.handleClickX, false)
 
 
       if(Cookies.get('user')){
@@ -52,59 +47,18 @@ class Header extends React.Component{
     }
 
 
-    componentWillUnmount(){
-      document.removeEventListener('mousedown' , this.handleClickX, false)
-    }
 
-
-
-      handleClickX =(e)=>{
-        console.log(e)
-        if(this.node !== null){
-          return
-          //the clicks is inside, continue to whatever you are doing
-        }
-
-        else{
-            if(this.state.notShow === false){
-              this.handleNavCollapse()
-            }
-        }
-        //the click is outside, do something
-      }
 
 
   render(){
 
       const renderLogin = () =>{
         return(
+         <nav className="bannerGround" >
+            <div className="left"> <MoutainSelection/> </div>
 
-          <div ref={node => this.node = node}> {/* this is for dropdown, DONT TOUCH  */}
-
-                 <nav className="navbar navbar-expand-lg navbar-light bannerGround" >
-
-                    <div className="left"> <MoutainSelection/> </div>
-
-                       <button className="navbar-toggler"  style={{float: 'right' }} type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                         <span onClick ={ ()=> this.handleNavCollapse() } className="navbar-toggler-icon"></span>
-                       </button>
-
-                       <div className={`${this.state.notShow ? 'collapse ' : null} navbar-collapse `} >
-
-                      <div style= {{width: '100%' , height: '40px' }}>
-
-                        <ul className="navbar-nav mt-0 mt-lg-0 collapseStyling" >
-                          <li className="nav-item"> <div className="push"><SignUp title={'Sign Up'}/></div> </li>
-                          <li className="nav-item"> <div className="push"><SignIn title={'Sign In'}/></div> </li>
-                        </ul>
-
-                       </div>
-                     </div>
-                   </nav>
-
-             </div>
-
-
+              <div className="push"> <UserModal title={'Login'}/> </div>
+           </nav>
         )
       }
 

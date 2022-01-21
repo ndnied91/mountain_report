@@ -1,0 +1,58 @@
+
+
+.modal-body{
+  height: 300px;
+}
+
+.login-options{
+  display: flex;
+  justify-content: space-around;
+  font-size: 30px;
+  border-bottom: 1px solid black;
+  letter-spacing: 5px;
+}
+
+#modalMessage{
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+
+.modal-footer {
+  justify-content: center;
+  padding-top: 25px;
+}
+
+.modal-footer button{
+ transform: scale(1.25);
+ letter-spacing: 2.5px;
+}
+
+.signIn:hover{
+  color: red;
+  cursor: pointer;
+}
+
+
+.signUp:hover{
+  color: red;
+  cursor: pointer;
+}
+
+.active{
+  color: blue;
+
+}
+
+.modal-content {
+    height: 400px;
+}
+
+
+
+@media only screen and (max-width: 660px ) {
+  .modal-dialog {
+    margin-top: 50%;
+  }
+}
