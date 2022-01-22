@@ -52,7 +52,7 @@ const MoutainSelection = (props)=> {
         </Modal.Header>
         <Modal.Body>
 
-      <label htmlFor="Results">Results</label>
+      <label htmlFor="Results">Selected Mountains</label>
         <div className="results">
 
               <div style={ checkMnt('Blue Mountain') ? { display:'block'} : {display : 'none'} } >

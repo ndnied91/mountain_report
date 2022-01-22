@@ -1,12 +1,16 @@
 
 
-
+.footer-container{
+  margin: 0;
+  width: 100%;
+  transform: scale(1.035);
+}
 
 .footer {
-  position:fixed;
+  /* position:absolute; */
   bottom:0;
   height: 40px;
-  left: 0;
+  /* left: 0; */
   bottom: 0;
   width: 100%;
   background-color: #262626;

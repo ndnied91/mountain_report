@@ -1,13 +1,11 @@
 import React from 'react'
-
 import { Link , Router, HashRouter} from 'react-router-dom'
-
 import './style.css'
 
 const Footer = () =>{
 
   return(
-     <div className="container">
+     <div className="footer-container">
            <div className="footer">
                      <div style={{display: 'flex' ,  justifyContent: 'center' , fontSize: '15px'  }}>
 
