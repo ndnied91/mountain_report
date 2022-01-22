@@ -1,38 +1,12 @@
 
 .forecast-day{
-  margin: 1vh;
+  margin: 0.99vh;
   text-align: center;
+  width: 20%;
 }
-
 
 .flex{
   display: flex;
   justify-content: center;
   width: auto;
 }
-
-
-/*
-.current-feelslike{
-  display: flex;
-  justify-content: flex-end;
-}
-
-
-.card-header{
-  font-size: 30px;
-}
-
-.bold{
-  font-weight:bold;
-}
-
-.current-temp{
-  font-size: 30px;
-  vertical-align: sub;
-
-}
-
-.feelslike-temp{
-  padding-left: 10px;
-} */

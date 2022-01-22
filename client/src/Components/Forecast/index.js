@@ -13,9 +13,14 @@ class Forecast extends React.Component{
           let url = `http://blob.weather.microsoft.com/static/weather4/en-us/law/${item.skycodeday}.gif`
           return(
             <div key={i} className="forecast-day">
-            <div>
-              {item.shortday} {item.date.replace('2021-', '').replace('2022-', '').replace('-', '/')}
+
+            <div className="date-day">
+            <p>{item.shortday} </p>
+            <p>{item.date.replace('2021-', '').replace('2022-', '').replace('-', '/')} </p>
+
               </div>
+
+
                 <img src={url} alt={'Weather'}/>
                 <div>
                   <span className="high"> {item.high}° </span>

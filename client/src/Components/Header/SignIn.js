@@ -21,6 +21,12 @@ class SignIn extends React.Component{
     }
 
 
+const renderError =() =>{
+  return(
+    <div className="errorMsg"> {this.props.error} </div>
+  )
+}
+
     return(
       <div>
 
@@ -37,6 +43,8 @@ class SignIn extends React.Component{
               <div className="form-group" >
                   <label style={{width: '100%'}}> <input className="form-control" type="password" name="password" placeholder="Enter password..."/> </label>
               </div>
+
+              {this.props.error !== null ? renderError(): null}
 
             <Modal.Footer>
                 <Button variant="btn btn-outline-dark" type="submit"> Log In </Button>
