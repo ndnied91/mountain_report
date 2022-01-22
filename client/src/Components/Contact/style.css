@@ -1,0 +1,17 @@
+
+
+.contact-form{
+  width: 70%;
+  padding-top: 50px;
+  height: 90vh;
+}
+
+#cContact{
+  display: flex;
+  justify-content: center;
+}
+
+
+#form-title{
+  text-align: center;
+}

@@ -1,5 +1,17 @@
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 .footer-container{
   margin: 0;
   width: 100%;
@@ -7,18 +19,18 @@
 }
 
 .footer {
-  /* position:absolute; */
   bottom:0;
   height: 40px;
-  /* left: 0; */
   bottom: 0;
   width: 100%;
   background-color: #262626;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
+
 }
+
+
 
 
 .footerLinks{
@@ -28,7 +40,6 @@
   padding-right: 3px;
   padding-left: 3px;
 }
-
 
 
 .line{
@@ -47,16 +58,12 @@
 
 .container{
   border: none;
-  height: 50px;
+  /* height: 50px; */
 }
 
 
 .trail a{
     text-decoration: none;
-}
-
-.trail{
-
 }
 
 .copyright{

@@ -151,8 +151,6 @@ return(
                   </div>
                 </span>
 
-                <div className="infoClick" onClick={()=>alert('CLICKED')}/>
-
 
           </div>
       </div>
@@ -164,3 +162,6 @@ return(
 
 
 export default MntProgress
+
+
+// <div className="infoClick" onClick={()=>alert('CLICKED')}/>

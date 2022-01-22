@@ -1,6 +1,11 @@
-body{
-  padding: 0;
+
+
+.cont{
+  min-height: 100%;
+  padding-top: 25px;
+  min-height: 100%;
 }
+
 
 .container{
   display: flex;
@@ -11,12 +16,9 @@ body{
 }
 
 .indmnt{
-  /* border: 1px solid black; */
-  /* padding: 40px; */
   margin: 10px;
   height: 400px;
   max-width: 100%;
-  /* max-width: 350px; */
 }
 
 .indmnt h1{

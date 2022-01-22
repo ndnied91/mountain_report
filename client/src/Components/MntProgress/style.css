@@ -61,7 +61,7 @@ width: 100%;
 .infoClick:hover{
   cursor: pointer;
   opacity: 0.6;
-  background-color: grey;
+  /* background-color: grey; */
 }
 
 

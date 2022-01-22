@@ -5,8 +5,10 @@ import {connect} from 'react-redux'
 import {fetchAllMountains  , updateMountainForce} from '../../actions'
 import 'react-circular-progressbar/dist/styles.css';
 import './style.css'
+import Header from '../Header'
 
 
+import { Link , Routes, BrowserRouter} from 'react-router-dom'
 import { HouseFill , TicketFill , CloudyFill , ArrowCounterclockwise } from 'react-bootstrap-icons';
 
 
@@ -152,6 +154,8 @@ const renderMnts = () => {
 
     return(
        <div className="top-container">
+
+        <Header/>
 
           <div>
             {this.props.user !== null ? renderSearch() : null }
