@@ -45,7 +45,7 @@ class Contact extends React.Component{
       <div id="cContact">
         <div className="contact-form" style={{paddingTop: '50px' }}>
 
-          <h1 id="form-title"> Please let us know how were doing!</h1>
+          <h1 id="form-title"> Please let us know how we're doing!</h1>
 
                   <div>
                       Topic
